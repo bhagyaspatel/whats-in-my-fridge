@@ -1,5 +1,6 @@
 package com.bhagyapatel.project.MVVM.Repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +13,19 @@ class RecipeRepository (private val recipeInterface: RecipeInterface) {
     val recipe : LiveData<List<RecipeItem>>
     get() = recipeList
 
-    suspend fun getRecipe(ingredient: String,
+    suspend fun getRecipe(ingredients: String,
                           number : Int,
                           ranking : Int,
-                          pantry : Boolean){
-        val response = recipeInterface.getRecipes(ingredient,number,ranking,pantry)
+                          pantry : Boolean,
+                          apiKey : String){
+        val response = recipeInterface.getRecipes(ingredients,number,ranking,pantry, apiKey)
 
         if(response.body() != null){
+            Log.d("Recipe_repo", "getRecipe: response body not null ${response.body()}")
             recipeList.postValue(response.body())
+        }
+        else{
+            Log.d("Recipe_repo", "getRecipe: response body is null : ${response.body()}")
         }
     }
 

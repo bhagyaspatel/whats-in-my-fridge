@@ -10,4 +10,7 @@
 
     <color name="app_orange">#DC8030</color>
     <color name="app_light_orange">#EAB861</color>
+    <color name="text_black">#302E2E</color>
+    <color name="gray">#9E9999</color>
+
 </resources>

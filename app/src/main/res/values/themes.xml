@@ -19,4 +19,9 @@
         <item name="cornerSize">20%</item>
     </style>
 
+    <style name="lessroundImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
+
 </resources>

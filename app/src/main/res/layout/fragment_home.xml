@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.HomeFragment"
     android:background="@color/white"
-    android:padding="@dimen/_6sdp">
+    android:padding="@dimen/_6sdp"
+
+    android:orientation="vertical">
 
         <FrameLayout
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_140sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/four_corner"
-            android:scaleType="centerCrop"
             android:backgroundTint="@color/app_orange"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingTop="@dimen/_8sdp"
@@ -42,13 +41,80 @@
                 android:fontFamily="@font/bungee"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/newRecipeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Try Now!"
+                android:elevation="@dimen/_20sdp"
                 android:background="@drawable/button"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="@dimen/_10sdp"/>
         </FrameLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp">
 
-</FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/four_corner"
+            android:backgroundTint="@color/app_orange"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/maintext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tell us whats \nin your fridge ??"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="@dimen/_8sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/bungee"
+                android:layout_gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fridgeCheckBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lets go! ☞"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_14sdp"
+                android:elevation="@dimen/_20sdp"
+                android:background="@drawable/button"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/_10sdp">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:rotation="45"
+            android:src="@drawable/fridge"
+            android:layout_gravity="end"
+            android:elevation="@dimen/_20sdp"/>
+
+    </FrameLayout>
+
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragmentContainerView2"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:navGraph="@navigation/navigation_home" />-->
+
+
+</LinearLayout>
+
+

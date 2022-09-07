@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_home"
+    app:startDestination="@id/homeFragment2">
+
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.bhagyapatel.project.Fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_fridgeItemsFragment2"
+            app:destination="@id/fridgeItemsFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fridgeItemsFragment2"
+        android:name="com.bhagyapatel.project.Fragments.FridgeItemsFragment"
+        android:label="fragment_fridge_items"
+        tools:layout="@layout/fragment_fridge_items" />
+    <fragment
+        android:id="@+id/newRecipeFragment"
+        android:name="com.bhagyapatel.project.Fragments.NewRecipeFragment"
+        android:label="fragment_new_recipe"
+        tools:layout="@layout/fragment_new_recipe" />
+</navigation>

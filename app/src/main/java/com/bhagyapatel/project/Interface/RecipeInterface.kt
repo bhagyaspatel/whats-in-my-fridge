@@ -12,5 +12,7 @@ interface RecipeInterface {
     suspend fun getRecipes (@Query("ingredients")ingredient: String,
                             @Query("number")number : Int,
                             @Query("ranking")ranking : Int,//2
-                            @Query("ignorePantry")pantry : Boolean) : Response<List<RecipeItem>>
+                            @Query("ignorePantry")pantry : Boolean,
+                            @Query("apiKey")apiKey:String) : Response<List<RecipeItem>>
+
 }

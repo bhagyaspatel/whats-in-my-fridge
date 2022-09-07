@@ -1,19 +1,63 @@
 package com.bhagyapatel.project.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bhagyapatel.project.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bhagyapatel.project.Adapters.DishRecipeAdapter
+import com.bhagyapatel.project.Interface.RecipeInterface
+import com.bhagyapatel.project.Interface.RetrofitHelper
+import com.bhagyapatel.project.MVVM.Repository.RecipeRepository
+import com.bhagyapatel.project.MVVM.ViewModal.MainViewModal
+import com.bhagyapatel.project.MVVM.ViewModal.MainViewModalFactory
+import com.bhagyapatel.project.databinding.FragmentRecipeBinding
 
 class RecipeFragment : Fragment() {
+
+    private val TAG = "Recipe_fragment"
+    private lateinit var binding : FragmentRecipeBinding
+
+    private lateinit var viewModal : MainViewModal
+    private lateinit var adapter : DishRecipeAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe, container, false)
+        binding = FragmentRecipeBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: Recipe fragment")
+
+        val commaSeperatedString = myList.joinToString(",+")
+        Log.d(TAG, "onViewCreated: ${commaSeperatedString}")
+
+        val recipe = RetrofitHelper.getInstance().create(RecipeInterface::class.java)
+        val repository = RecipeRepository(recipe)
+        viewModal = ViewModelProvider(this, MainViewModalFactory(repository, commaSeperatedString))
+            .get(MainViewModal::class.java)
+
+        viewModal.recipes.observe(viewLifecycleOwner){ recipes->
+            Log.d(TAG, "onViewCreated: ${recipes}")
+            if(recipes != null){
+                binding.progressBar.visibility = View.GONE
+                binding.dishRV.visibility = View.VISIBLE
+                adapter = DishRecipeAdapter(requireContext(), recipes)
+                binding.dishRV.adapter = adapter
+                binding.dishRV.layoutManager = LinearLayoutManager(requireContext())
+            }else{
+                Log.d(TAG, "onViewCreated: API call successful but quotes is null")
+            }
+        }
+    }
+
+
 
 }

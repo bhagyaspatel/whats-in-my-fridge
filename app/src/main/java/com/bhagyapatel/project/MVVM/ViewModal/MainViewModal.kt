@@ -8,10 +8,13 @@ import com.bhagyapatel.project.MVVM.Repository.RecipeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModal(private val repository: RecipeRepository, val ingredient: String) : ViewModel() {
+class MainViewModal(private val repository: RecipeRepository, val ingredients: String) : ViewModel() {
+
+    private val API_KEY = "1483da310768438380cdaf564ca241c6"
+
     init{
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getRecipe(ingredient, 3, 2, true)
+            repository.getRecipe(ingredients, 2, 2, true, API_KEY)
         }
     }
 

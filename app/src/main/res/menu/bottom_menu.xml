@@ -4,16 +4,13 @@
 
     <item android:title="Home"
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home"
-        app:cnb_iconColor="@color/app_orange" />
+        android:icon="@drawable/ic_home" />
 
     <item android:title="Recipe"
         android:id="@+id/recipeFragment"
-        android:icon="@drawable/cooker"
-        app:cnb_iconColor="@color/app_orange"/>
+        android:icon="@drawable/cooker"/>
 
     <item android:title="Profile"
         android:icon="@drawable/ic_profile"
-        android:id="@+id/profileFragment"
-        app:cnb_iconColor="@color/app_orange"/>
+        android:id="@+id/profileFragment"/>
 </menu>
