@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "908905308158",
+    "project_id": "whats-in-the-fridge-fe8e8",
+    "storage_bucket": "whats-in-the-fridge-fe8e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908905308158:android:85ff0081a5a50be6722aaf",
+        "android_client_info": {
+          "package_name": "com.bhagyapatel.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908905308158-1caq01gu0a4afme3h9m6t6do9bro4srp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb4CSVpOSaGIKUOz58Qi_ABk75Am5KyIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908905308158-1caq01gu0a4afme3h9m6t6do9bro4srp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

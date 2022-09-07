@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.HomeFragment"
+    android:background="@color/white"
+    android:padding="@dimen/_6sdp">
+
+        <FrameLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_140sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/four_corner"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/app_orange"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="120dp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center_vertical|end"
+                android:background="@drawable/four_corner"
+                android:scaleType="centerCrop"
+                app:shapeAppearance="@style/roundImageView"
+                android:src="@drawable/burger" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Try our new \n recipes!!"
+                android:lineSpacingExtra="@dimen/_8sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/bungee"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Try Now!"
+                android:background="@drawable/button"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/_10sdp"/>
+        </FrameLayout>
+
+
+</FrameLayout>
