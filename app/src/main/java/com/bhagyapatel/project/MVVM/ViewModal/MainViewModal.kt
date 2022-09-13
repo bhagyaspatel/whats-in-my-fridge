@@ -14,7 +14,7 @@ class MainViewModal(private val repository: RecipeRepository, val ingredients: S
 
     init{
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getRecipe(ingredients, 2, 2, true, API_KEY)
+            repository.getRecipe(ingredients, API_KEY)
         }
     }
 

@@ -1,6 +1,7 @@
 package com.bhagyapatel.project.Adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +9,36 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bhagyapatel.project.DataClasses.RecipeItem
+import com.bhagyapatel.project.DataClasses.SelectedDish
 import com.bhagyapatel.project.R
 import com.bumptech.glide.Glide
 
-class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>) : RecyclerView.Adapter<DishRecipeAdapter.viewHoler>() {
+class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val listener : (SelectedDish) -> Unit) : RecyclerView.Adapter<DishRecipeAdapter.viewHoler>() {
+
+    val TAG = "Dish adapter"
+
     inner class viewHoler (itemView : View): RecyclerView.ViewHolder(itemView) {
         val dishPic = itemView.findViewById<ImageView>(R.id.dishPic)
         val dishName = itemView.findViewById<TextView>(R.id.dishName)
         val likes = itemView.findViewById<TextView>(R.id.likeCount)
+
+        init{
+            itemView.setOnClickListener {
+                Log.d(TAG, "ItemView Clicked ${list[adapterPosition].id}")
+                val item = list[adapterPosition]
+                val list : MutableList<String> = ArrayList()
+
+                for (i in 1 until item.missedIngredientCount){
+                    list.add(item.missedIngredients[i].original)
+                }
+                for (i in 1 until item.usedIngredientCount){
+                    list.add(item.usedIngredients[i].original)
+                }
+
+                val selectedDish = SelectedDish(item.title, item.image, list)
+                listener.invoke(selectedDish)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHoler {

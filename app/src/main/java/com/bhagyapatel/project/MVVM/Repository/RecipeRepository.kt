@@ -14,13 +14,11 @@ class RecipeRepository (private val recipeInterface: RecipeInterface) {
     get() = recipeList
 
     suspend fun getRecipe(ingredients: String,
-                          number : Int,
-                          ranking : Int,
-                          pantry : Boolean,
                           apiKey : String){
-        val response = recipeInterface.getRecipes(ingredients,number,ranking,pantry, apiKey)
+        val response = recipeInterface.getRecipes(ingredients,apiKey)
 
         if(response.body() != null){
+            Log.d("Recipe_repo", "getRecipe: request : ${ingredients}")
             Log.d("Recipe_repo", "getRecipe: response body not null ${response.body()}")
             recipeList.postValue(response.body())
         }

@@ -57,6 +57,4 @@ class HomeFragment : Fragment() {
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
         fragmentTransaction.commit()
     }
-
-
 }
