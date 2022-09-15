@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/graphHoldingFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.bhagyapatel.project.Fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.bhagyapatel.project.Fragments.RecipeFragment"
@@ -20,4 +15,9 @@
         android:name="com.bhagyapatel.project.Fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/graphHoldingFragment"
+        android:name="com.bhagyapatel.project.Fragments.GraphHoldingFragment"
+        android:label="fragment_graph_holding"
+        tools:layout="@layout/fragment_graph_holding" />
 </navigation>

@@ -75,6 +75,8 @@ class SignupActivity : AppCompatActivity() {
                         Log.d(TAG, "error while signin : ${it.message}")
                         Toast.makeText(this, "Signup Error", Toast.LENGTH_SHORT).show()
                     }
+
+
             }
         }
     }

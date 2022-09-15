@@ -26,35 +26,37 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: home fragment")
 
         binding.fridgeCheckBtn.setOnClickListener {
             Log.d(TAG, "onViewCreated: Fridge check Btn clicked")
-
-            replaceFragment(FridgeItemsFragment())
+            val sendData = HomeFragmentDirections.actionHomeFragment2ToFridgeItemsFragment2()
+            Navigation.findNavController(view).navigate(sendData)
 //            findNavController().navigate(
-//                HomeFragmentDirections.actionHomeFragmentToFridgeItemsFragment()
+//               HomeFragmentDirections.actionHomeFragment2ToFridgeItemsFragment2()
 //            )
 //            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_fridgeItemsFragment, null)
         }
 
         binding.newRecipeBtn.setOnClickListener {
-            replaceFragment(NewRecipeFragment())
-//            findNavController().navigate(
-//                HomeFragmentDirections.actionHomeFragmentToNewRecipeFragment()
-//            )
+            Log.d(TAG, "onViewCreated: New Recipe Btn clicked")
+
+            val sendData = HomeFragmentDirections.actionHomeFragment2ToNewRecipeFragment()
+            Navigation.findNavController(view).navigate(sendData)
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        Log.d(TAG, "replaceFragment: home fragment to fridge item addition")
-        val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.remove(HomeFragment())
-        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-        fragmentTransaction.commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        Log.d(TAG, "replaceFragment: home fragment to fridge item addition")
+//        val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+//        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+////        fragmentTransaction.remove(HomeFragment())
+//        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+//        fragmentTransaction.commit()
+//    }
 }

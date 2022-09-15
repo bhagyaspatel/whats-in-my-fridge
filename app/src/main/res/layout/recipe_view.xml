@@ -40,12 +40,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:fontFamily="@font/bluetea"
                     android:layout_gravity="center_vertical|end"
                     android:text="Cranberry Apple Crisp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic|bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -65,6 +64,8 @@
                         android:layout_marginStart="@dimen/_2sdp"
                         android:textColor="@color/white"/>
                 </LinearLayout>
+
+
 
             </LinearLayout>
 

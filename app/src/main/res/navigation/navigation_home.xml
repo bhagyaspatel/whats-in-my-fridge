@@ -21,10 +21,32 @@
         android:id="@+id/fridgeItemsFragment2"
         android:name="com.bhagyapatel.project.Fragments.FridgeItemsFragment"
         android:label="fragment_fridge_items"
-        tools:layout="@layout/fragment_fridge_items" />
+        tools:layout="@layout/fragment_fridge_items" >
+        <action
+            android:id="@+id/action_fridgeItemsFragment2_to_recipeFragment2"
+            app:destination="@id/recipeFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/newRecipeFragment"
         android:name="com.bhagyapatel.project.Fragments.NewRecipeFragment"
         android:label="fragment_new_recipe"
         tools:layout="@layout/fragment_new_recipe" />
+    <fragment
+        android:id="@+id/recipeFragment2"
+        android:name="com.bhagyapatel.project.Fragments.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe" >
+        <action
+            android:id="@+id/action_recipeFragment2_to_singleDishFragment"
+            app:destination="@id/singleDishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleDishFragment"
+        android:name="com.bhagyapatel.project.Fragments.SingleDishFragment"
+        android:label="fragment_single_dish"
+        tools:layout="@layout/fragment_single_dish" >
+        <argument
+            android:name="dish"
+            app:argType="com.bhagyapatel.project.DataClasses.SelectedDish" />
+    </fragment>
 </navigation>

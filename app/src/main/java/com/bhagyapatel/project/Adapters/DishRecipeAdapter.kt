@@ -1,8 +1,10 @@
 package com.bhagyapatel.project.Adapters
 
 import android.content.Context
+import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,7 +17,7 @@ import com.bumptech.glide.Glide
 
 class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val listener : (SelectedDish) -> Unit) : RecyclerView.Adapter<DishRecipeAdapter.viewHoler>() {
 
-    val TAG = "Dish adapter"
+    val TAG = "Dish_adapter"
 
     inner class viewHoler (itemView : View): RecyclerView.ViewHolder(itemView) {
         val dishPic = itemView.findViewById<ImageView>(R.id.dishPic)
@@ -28,14 +30,19 @@ class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val
                 val item = list[adapterPosition]
                 val list : MutableList<String> = ArrayList()
 
-                for (i in 1 until item.missedIngredientCount){
+                Log.d(TAG, "missed and used counts: ${item.missedIngredientCount} ${item.usedIngredientCount}")
+
+                for (i in 0 until item.missedIngredientCount){
                     list.add(item.missedIngredients[i].original)
+                    Log.d(TAG, "missed " + item.missedIngredients[i].original)
                 }
-                for (i in 1 until item.usedIngredientCount){
+                for (i in 0 until item.usedIngredientCount){
                     list.add(item.usedIngredients[i].original)
+                    Log.d(TAG, "used " + item.missedIngredients[i].original)
                 }
 
-                val selectedDish = SelectedDish(item.title, item.image, list)
+                val selectedDish = SelectedDish(item.id,item.title, item.image, list)
+                Log.d(TAG, "list of ingredients : ${list} ")
                 listener.invoke(selectedDish)
             }
         }

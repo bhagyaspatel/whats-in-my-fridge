@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="Home"
-        android:id="@+id/homeFragment"
+        android:id="@+id/graphHoldingFragment"
         android:icon="@drawable/ic_home" />
 
     <item android:title="Recipe"
