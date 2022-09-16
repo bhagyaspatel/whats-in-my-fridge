@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.RecipeFragment"
-    android:background="@color/white">
+    android:background="@color/grey_bg">
 
     <TextView
         android:id="@+id/heading"
@@ -36,7 +36,6 @@
         android:backgroundTint="@color/app_orange"
         android:layout_below="@+id/heading"
         android:layout_margin="@dimen/_6sdp"/>
-
 
     <ProgressBar
         android:id="@+id/progressBar"

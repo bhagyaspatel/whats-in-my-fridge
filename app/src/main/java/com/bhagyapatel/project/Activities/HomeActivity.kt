@@ -69,10 +69,10 @@ class HomeActivity : AppCompatActivity() {
 //        }
 //    }
 //
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager : FragmentManager = supportFragmentManager
-        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-        fragmentTransaction.commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        val fragmentManager : FragmentManager = supportFragmentManager
+//        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+//        fragmentTransaction.commit()
+//    }
 }

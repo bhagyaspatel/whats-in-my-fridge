@@ -14,7 +14,7 @@ import com.bhagyapatel.project.Interface.RecipeInterface
 import com.bhagyapatel.project.Interface.RetrofitHelpers.RetrofitHelper
 import com.bhagyapatel.project.MVVM.Repository.RecipeRepository
 import com.bhagyapatel.project.MVVM.ViewModal.MainViewModal
-import com.bhagyapatel.project.MVVM.ViewModal.MainViewModalFactory
+import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.MainViewModalFactory
 import com.bhagyapatel.project.databinding.FragmentRecipeBinding
 
 class RecipeFragment : Fragment() {
@@ -50,18 +50,9 @@ class RecipeFragment : Fragment() {
             if(recipes != null){
                 binding.progressBar.visibility = View.GONE
                 binding.dishRV.visibility = View.VISIBLE
-                adapter = DishRecipeAdapter(requireContext(), recipes){
-//                    val bundle = Bundle()
-//                    bundle.putParcelable("selectedDish", it)
-//                    val fragment = Fragment()
-//                    Log.d(TAG, "bundle is : ${bundle}")
-//                    fragment.arguments = bundle
-                    val sendData = RecipeFragmentDirections.actionRecipeFragment2ToSingleDishFragment(it)
+                adapter = DishRecipeAdapter(requireContext(), recipes){ recipe ->
+                    val sendData = RecipeFragmentDirections.actionRecipeFragment2ToSingleDishFragment(recipe)
                     Navigation.findNavController(view).navigate(sendData)
-//                    findNavController().navigate(
-//                        RecipeFragmentDirections.actionRecipeFragment2ToSingleDishFragment(it)
-//                    )
-//                    replaceFragment(SingleDishFragment())
                 }
                 binding.dishRV.adapter = adapter
                 binding.dishRV.layoutManager = LinearLayoutManager(requireContext())
@@ -70,13 +61,4 @@ class RecipeFragment : Fragment() {
             }
         }
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        Log.d(TAG, "replaceFragment: home fragment to ${fragment}")
-//        val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
-//        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-//        fragmentTransaction.commit()
-//    }
-
 }

@@ -15,11 +15,11 @@ import com.bhagyapatel.project.DataClasses.SelectedDish
 import com.bhagyapatel.project.R
 import com.bumptech.glide.Glide
 
-class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val listener : (SelectedDish) -> Unit) : RecyclerView.Adapter<DishRecipeAdapter.viewHoler>() {
+class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val listener : (SelectedDish) -> Unit) : RecyclerView.Adapter<DishRecipeAdapter.viewHolder>() {
 
     val TAG = "Dish_adapter"
 
-    inner class viewHoler (itemView : View): RecyclerView.ViewHolder(itemView) {
+    inner class viewHolder (itemView : View): RecyclerView.ViewHolder(itemView) {
         val dishPic = itemView.findViewById<ImageView>(R.id.dishPic)
         val dishName = itemView.findViewById<TextView>(R.id.dishName)
         val likes = itemView.findViewById<TextView>(R.id.likeCount)
@@ -38,7 +38,7 @@ class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val
                 }
                 for (i in 0 until item.usedIngredientCount){
                     list.add(item.usedIngredients[i].original)
-                    Log.d(TAG, "used " + item.missedIngredients[i].original)
+                    Log.d(TAG, "used " + item.usedIngredients[i].original)
                 }
 
                 val selectedDish = SelectedDish(item.id,item.title, item.image, list)
@@ -48,12 +48,12 @@ class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHoler {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recipe_view, parent, false)
-        return viewHoler(view)
+        return viewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: viewHoler, position: Int) {
+    override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val currentItem = list[position]
         holder.dishName.text = currentItem.title
         holder.likes.text = currentItem.likes.toString()

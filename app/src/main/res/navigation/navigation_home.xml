@@ -30,7 +30,11 @@
         android:id="@+id/newRecipeFragment"
         android:name="com.bhagyapatel.project.Fragments.NewRecipeFragment"
         android:label="fragment_new_recipe"
-        tools:layout="@layout/fragment_new_recipe" />
+        tools:layout="@layout/fragment_new_recipe" >
+        <action
+            android:id="@+id/action_newRecipeFragment_to_randomSingleDishFragment"
+            app:destination="@id/randomSingleDishFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipeFragment2"
         android:name="com.bhagyapatel.project.Fragments.RecipeFragment"
@@ -48,5 +52,14 @@
         <argument
             android:name="dish"
             app:argType="com.bhagyapatel.project.DataClasses.SelectedDish" />
+    </fragment>
+    <fragment
+        android:id="@+id/randomSingleDishFragment"
+        android:name="com.bhagyapatel.project.Fragments.RandomSingleDishFragment"
+        android:label="fragment_random_single_dish"
+        tools:layout="@layout/fragment_random_single_dish" >
+        <argument
+            android:name="dish"
+            app:argType="com.bhagyapatel.project.DataClasses.Recipe" />
     </fragment>
 </navigation>

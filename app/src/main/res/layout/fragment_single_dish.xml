@@ -69,10 +69,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Burger"
-                android:textStyle="bold|italic"
                 android:textSize="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/mingzatregular"
+                android:fontFamily="@font/acuminbold"
                 android:textColor="@color/text_black"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"/>
@@ -84,15 +83,15 @@
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_16sdp"
                 android:fontFamily="@font/bungee"
-                android:layout_marginTop="@dimen/_26sdp" />
+                android:layout_marginTop="@dimen/_12sdp" />
 
             <LinearLayout
                 android:id="@+id/ingredientLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical"/>
-            
+
             <com.bhagyapatel.project.Animations.MorphButton
                 android:id="@+id/morphSaveButton"
                 android:layout_marginTop="@dimen/_6sdp"
@@ -102,7 +101,6 @@
                 android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

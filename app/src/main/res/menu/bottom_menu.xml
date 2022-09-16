@@ -6,9 +6,9 @@
         android:id="@+id/graphHoldingFragment"
         android:icon="@drawable/ic_home" />
 
-    <item android:title="Recipe"
-        android:id="@+id/recipeFragment"
-        android:icon="@drawable/cooker"/>
+    <item android:title="Saved"
+        android:id="@+id/savedRecipeFragment"
+        android:icon="@drawable/ic_bookmarks"/>
 
     <item android:title="Profile"
         android:icon="@drawable/ic_profile"

@@ -17,7 +17,7 @@ import com.bhagyapatel.project.Interface.RetrofitHelpers.AuthRetrofitHelper
 import com.bhagyapatel.project.Interface.SignupInterface
 import com.bhagyapatel.project.MVVM.Repository.AuthRepository
 import com.bhagyapatel.project.MVVM.ViewModal.AuthViewModal
-import com.bhagyapatel.project.MVVM.ViewModal.AuthViewModalFactory
+import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.AuthViewModalFactory
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentSingleDishBinding
@@ -95,7 +95,7 @@ class SingleDishFragment : Fragment() {
                 text = "\u2022 ${ingredient}"
                 textSize = 22F
                 setTextColor(ContextCompat.getColor(requireContext(), R.color.text_black))
-                val typeFace : Typeface = resources.getFont(R.font.mingzatregular)
+                val typeFace : Typeface = resources.getFont(R.font.acuminregular)
                 typeface = typeFace
             }
             binding.ingredientLL.addView(textView)

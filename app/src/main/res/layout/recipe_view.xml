@@ -11,20 +11,20 @@
         app:cardCornerRadius="@dimen/_20sdp"
         app:cardPreventCornerOverlap="true"
         app:cardElevation="@dimen/_6sdp"
-        app:contentPadding="@dimen/_6sdp"
         app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="@color/app_orange">
+        app:cardBackgroundColor="@color/white">
+
+<!--        app:cardBackgroundColor="@color/app_orange">  -->
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_100sdp"
             android:orientation="horizontal">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/dishPic"
                 android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_150sdp"
-                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_gravity="center_vertical|start"
                 android:scaleType="centerCrop"
                 app:shapeAppearance="@style/lessroundImageView"
@@ -34,27 +34,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:weightSum="3"
                 android:layout_marginStart="@dimen/_8sdp">
                 <TextView
                     android:id="@+id/dishName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
+                    android:maxLines="2"
+                    android:layout_margin="@dimen/_6sdp"
                     android:layout_gravity="center_vertical|end"
                     android:text="Cranberry Apple Crisp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="italic|bold" />
+                    android:textColor="@color/text_black"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="italic|bold"
+                    android:layout_weight="2"/>
+<!--                android:textColor="@color/white"-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/_10sdp">
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/like_heart"/>
+                        android:src="@drawable/red_heart"/>
                     <TextView
                         android:id="@+id/likeCount"
                         android:layout_width="wrap_content"
@@ -62,19 +69,19 @@
                         android:text="1"
                         android:textStyle="bold"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/text_black"/>
+<!--                    android:textColor="@color/white"-->
                 </LinearLayout>
-
-
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
 
     </com.google.android.material.card.MaterialCardView>
 
-
 </FrameLayout>
+
+<!--from material card view-->
+<!--    app:contentPadding="@dimen/_6sdp"-->
+
+<!--from shapeable image view-->
+<!--    app:contentPadding="@dimen/_6sdp"-->
+

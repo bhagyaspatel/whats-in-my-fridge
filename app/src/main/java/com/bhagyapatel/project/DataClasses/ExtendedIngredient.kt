@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class AnalyzedInstruction(
-    val steps: List<Steps>
+data class ExtendedIngredient(
+    val original: String
 ) : Parcelable

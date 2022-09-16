@@ -1,5 +1,9 @@
 package com.bhagyapatel.project.DataClasses
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Recipe(
     val aggregateLikes: Int,
     val analyzedInstructions: List<AnalyzedInstruction>,
@@ -11,4 +15,7 @@ data class Recipe(
     val title: String,
     val vegan: Boolean,
     val vegetarian: Boolean,
-)
+    val readyInMinutes : Int,
+    val servings : Int,
+    val extendedIngredients: List<ExtendedIngredient>
+) : Parcelable
