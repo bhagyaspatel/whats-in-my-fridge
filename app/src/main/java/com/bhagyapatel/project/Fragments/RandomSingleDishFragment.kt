@@ -78,7 +78,7 @@ class RandomSingleDishFragment : Fragment() {
             binding.vegLL.visibility = View.VISIBLE
 
         binding.likeCount.text = dish.aggregateLikes.toString()
-        binding.serveCount.text = dish.servings.toString()
+        binding.serveCount.text = "serves ${dish.servings}"
 
         binding.dishName.text = dish.title
         Glide.with(requireContext()).load(dish.image).into(binding.dishPic)

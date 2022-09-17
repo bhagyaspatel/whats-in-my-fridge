@@ -8,14 +8,18 @@
         <entry key="app/src/main/res/drawable/button_dark.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/four_corner.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/four_corners_two.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/image_upper_round.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/lower_drawer.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/navigation_icon.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/round_btn.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/top_border.xml" value="0.165" />
         <entry key="app/src/main/res/font/login_signup_fonts.xml" value="0.2638888888888889" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_fridge_items.xml" value="0.1983695652173913" />
         <entry key="app/src/main/res/layout/fragment_graph_holding.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -24,8 +28,12 @@
         <entry key="app/src/main/res/layout/fragment_random_single_dish.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_recipe.xml" value="0.2821954345703124" />
         <entry key="app/src/main/res/layout/fragment_saved_recipe.xml" value="0.28072916666666664" />
+        <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_single_dish.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_trial.xml" value="0.14375" />
+        <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/random_recipe_view.xml" value="0.375" />
         <entry key="app/src/main/res/layout/recipe_view.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.28923076923076924" />

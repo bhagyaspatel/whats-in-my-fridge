@@ -13,7 +13,6 @@ import androidx.core.widget.addTextChangedListener
 import com.bhagyapatel.project.Activities.HomeActivity
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.databinding.ActivityLoginBinding
-import com.bhagyapatel.project.databinding.ActivitySigninBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -23,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)

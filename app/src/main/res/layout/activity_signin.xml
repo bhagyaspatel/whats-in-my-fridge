@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Authentication.SignupActivity"
-    android:background="@drawable/food_bg_bw">
-
+    android:background="@drawable/food_bg_bw"
+    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
 
     <LinearLayout
         android:id="@+id/signupLL"
@@ -31,13 +31,6 @@
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_8sdp" />
-
-<!--        <View-->
-<!--            android:layout_width="@dimen/_90sdp"-->
-<!--            android:layout_height="@dimen/_2sdp"-->
-<!--            android:background="@color/white"-->
-<!--            android:layout_marginTop="@dimen/_2sdp"-->
-<!--            android:layout_gravity="center"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".OnboardingSplash.Screens.ThirdScreenFragment"
+    android:background="@color/splash_bg">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_300sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_65sdp"
+        android:src="@drawable/eating_dog"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_200sdp">
+
+        <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_orange"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:backgroundTint="@color/app_orange"/>
+
+        <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_orange"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:backgroundTint="@color/app_orange"/>
+
+        <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_orange"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:backgroundTint="@color/app_orange"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/doTV"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_150sdp"
+        android:text="EAT"
+        android:textColor="@color/text_black"
+        android:gravity="center"
+        android:textSize="@dimen/_18sdp"
+        android:fontFamily="@font/bungee"/>
+
+    <TextView
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/doTV"
+        android:gravity="center_horizontal"
+        android:textColor="@color/text_grey"
+        android:text="Enjoyment tells the parasympathetic nervous system to trigger its relaxation response"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/finishBtn"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/four_corners_two"
+        android:backgroundTint="@color/app_orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Finish"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_65sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
