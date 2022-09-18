@@ -45,7 +45,7 @@ class NewRecipeFragment : Fragment() {
 
         binding.collapsingToolbar.setExpandedTitleTypeface(tf);
         binding.collapsingToolbar.setCollapsedTitleTypeface(tf);
-
+ 
         val randomRecipe = RetrofitHelper.getInstance().create(RandomRecipeInterface::class.java)
         val repository = RandomRecipeRepository(randomRecipe)
         viewModal = ViewModelProvider(this, RandomRecipeViewModalFactory(repository))

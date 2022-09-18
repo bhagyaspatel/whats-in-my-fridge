@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Authentication.SignupActivity"
-    android:background="@drawable/food_bg_bw"
     android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bw_bg_food"
+        android:alpha="0.6"/>
 
     <LinearLayout
         android:id="@+id/signupLL"

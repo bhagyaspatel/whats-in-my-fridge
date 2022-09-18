@@ -11,4 +11,5 @@ interface RandomRecipeInterface {
     @GET("/recipes/random")
     suspend fun getRandomRecipe (@Query("number")number : Int,
                                  @Query("apiKey")apiKey : String) : Response<RandomRecipe>
+
 }

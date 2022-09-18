@@ -41,9 +41,9 @@ class RandomSingleDishFragment : Fragment() {
         val dish = RandomSingleDishFragmentArgs.fromBundle(requireArguments()).dish
         Log.d(TAG, "onCreate single dish frag ${dish}")
 
-        var isShow = true
-        var scrollRange = -1
-
+//        var isShow = true
+//        var scrollRange = -1
+//
 //        binding.appbarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
 //            if (scrollRange == -1){
 //                scrollRange = barLayout?.totalScrollRange!!
