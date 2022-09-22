@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bhagyapatel.project.R
+import com.bhagyapatel.project.Utils.Constants.RANDOM
 import com.bhagyapatel.project.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -46,7 +47,7 @@ class HomeFragment : Fragment() {
         binding.newRecipeBtn.setOnClickListener {
             Log.d(TAG, "onViewCreated: New Recipe Btn clicked")
 
-            val sendData = HomeFragmentDirections.actionHomeFragment2ToNewRecipeFragment()
+            val sendData = HomeFragmentDirections.actionHomeFragment2ToNewRecipeFragment(RANDOM)
             Navigation.findNavController(view).navigate(sendData)
         }
     }

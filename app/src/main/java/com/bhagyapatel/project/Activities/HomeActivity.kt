@@ -19,6 +19,9 @@ import com.bhagyapatel.project.Fragments.RecipeFragment
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.databinding.ActivityHomeBinding
 import com.bhagyapatel.project.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+
+val uuid = FirebaseAuth.getInstance().currentUser?.uid
 
 class HomeActivity : AppCompatActivity() {
     private val TAG = "Home_activity"

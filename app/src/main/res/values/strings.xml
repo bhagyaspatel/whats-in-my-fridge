@@ -8,4 +8,9 @@
     <string name="not_available"><![CDATA[<Not Available ☹️️>]]></string>
     <string name="collections">Collections</string>
     <string name="saved">Saved</string>
+    <string name="enter_ingredient">Enter Ingredient..</string>
+    <string name="explore_dish">Explore dish!</string>
+    <string name="update_avatar">Update Avatar</string>
+    <string name="upload_profile_pic">Upload profile pic</string>
+    <string name="no_saved_recipes_added">No saved recipes added !!</string>
 </resources>

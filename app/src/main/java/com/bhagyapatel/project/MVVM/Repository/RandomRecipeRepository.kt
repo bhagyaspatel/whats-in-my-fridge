@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bhagyapatel.project.DataClasses.RandomRecipe
-import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.Interface.RandomRecipeInterface
 
 class RandomRecipeRepository (private val randomRecipeInterface: RandomRecipeInterface) {

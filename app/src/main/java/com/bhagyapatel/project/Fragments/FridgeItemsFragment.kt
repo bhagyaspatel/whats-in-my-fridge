@@ -43,7 +43,7 @@ class FridgeItemsFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please enter ingredient first", Toast.LENGTH_SHORT).show()
             } else{
                 addChip(item)
-                binding.etItem.text.clear()
+                binding.etItem.text?.clear()
             }
         }
 

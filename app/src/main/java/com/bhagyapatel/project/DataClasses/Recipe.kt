@@ -6,11 +6,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Recipe(
     val aggregateLikes: Int,
-    val analyzedInstructions: List<AnalyzedInstruction>,
+//    val analyzedInstructions: List<AnalyzedInstruction>,
     val id: Int,
     val image: String,
     val instructions: String,
-    val spoonacularSourceUrl: String,
+//    val spoonacularSourceUrl: String,
     val summary: String,
     val title: String,
     val vegan: Boolean,

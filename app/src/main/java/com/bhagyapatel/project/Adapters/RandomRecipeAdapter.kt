@@ -29,8 +29,8 @@ class RandomRecipeAdapter (val context : Context, val list : List<Recipe>, val l
                 val list : MutableList<String> = ArrayList()
                 var recipe : Recipe
                 item.apply {
-                    recipe = Recipe(aggregateLikes,analyzedInstructions, id, image, instructions,
-                        spoonacularSourceUrl, summary, title, vegan, vegetarian, readyInMinutes,
+                    recipe = Recipe(aggregateLikes, id, image, instructions,
+                        summary, title, vegan, vegetarian, readyInMinutes,
                         servings, extendedIngredients)
                 }
                 listener.invoke(recipe)

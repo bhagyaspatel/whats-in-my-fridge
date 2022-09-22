@@ -4,9 +4,11 @@
     package="com.bhagyapatel.project">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".MyApplication"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,7 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Authentication.SignupActivity"
             android:exported="false"/>

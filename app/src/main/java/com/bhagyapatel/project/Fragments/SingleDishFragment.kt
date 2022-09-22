@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bhagyapatel.project.Animations.MorphButton
+import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
 import com.bhagyapatel.project.DataClasses.SelectedDish
-import com.bhagyapatel.project.Interface.RetrofitHelpers.AuthRetrofitHelper
-import com.bhagyapatel.project.Interface.SignupInterface
-import com.bhagyapatel.project.MVVM.Repository.AuthRepository
-import com.bhagyapatel.project.MVVM.ViewModal.AuthViewModal
-import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.AuthViewModalFactory
+import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
+import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
+import com.bhagyapatel.project.MVVM.ViewModal.NodeViewModals.NodeViewModal
+import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentSingleDishBinding
@@ -29,7 +29,7 @@ class SingleDishFragment : Fragment() {
     private lateinit var binding : FragmentSingleDishBinding
 
     private var dish : SelectedDish? = null
-    private lateinit var authViewModal: AuthViewModal
+    private lateinit var nodeViewModal: NodeViewModal
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +45,10 @@ class SingleDishFragment : Fragment() {
         dish = SingleDishFragmentArgs.fromBundle(requireArguments()).dish
         Log.d(TAG, "onCreate: ${dish}, ${binding.dishName}")
 
-        val authInterface = AuthRetrofitHelper.getInstance().create(SignupInterface::class.java)
-        val reopsitory = AuthRepository(authInterface)
-        authViewModal = ViewModelProvider(this, AuthViewModalFactory(reopsitory))
-            .get(AuthViewModal::class.java)
+        val nodeInterface = NodeRetrofitHelper.getInstance().create(NodeInterface::class.java)
+        val reopsitory = NodeRepository(nodeInterface)
+        nodeViewModal = ViewModelProvider(this, NodeViewModalFactory(reopsitory))
+            .get(NodeViewModal::class.java)
 
         if (dish != null){
             setView()
@@ -66,16 +66,17 @@ class SingleDishFragment : Fragment() {
                 map.put("recipeId", dish!!.recipeId.toString())
                 map.put("title", dish!!.title)
                 map.put("imageUrl", dish!!.image)
+//                map.put ("userObjectId", )
 //                map.put("uuid", "234fasf")
-                authViewModal.saveRecipe(map)
-                authViewModal.response.observe(viewLifecycleOwner){ response ->
-                    Log.d(TAG, "response on save recipe: ${response}")
-                    if (response != null){
-                        Log.d(TAG, "response is success status and message: ${response.success}; ${response.message}")
-                    }else{
-                        Log.d(TAG, "response is null")
-                    }
-                }
+//                nodeViewModal.saveRecipe(map)
+//                nodeViewModal.response.observe(viewLifecycleOwner){ response ->
+//                    Log.d(TAG, "response on save recipe: ${response}")
+//                    if (response != null){
+//                        Log.d(TAG, "response is success status and message: ${response.success}; ${response.message}")
+//                    }else{
+//                        Log.d(TAG, "response is null")
+//                    }
+//                }
             }
         }
         else{

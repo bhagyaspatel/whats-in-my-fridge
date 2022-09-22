@@ -1,7 +1,6 @@
 package com.bhagyapatel.project.Interface
 
 import com.bhagyapatel.project.DataClasses.RandomRecipe
-import com.bhagyapatel.project.DataClasses.Recipe
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

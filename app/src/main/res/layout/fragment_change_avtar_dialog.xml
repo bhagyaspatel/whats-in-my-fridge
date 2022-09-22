@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/_20sdp"
+    tools:context=".Fragments.ChangeAvtarDialogFragment">
+
+
+    <LinearLayout
+        android:id="@+id/optionMaleAvtar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/maleAvtar"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_orange"
+            android:scaleType="centerCrop"
+            android:src="@drawable/male_chef_avtar"
+            app:shapeAppearance="@style/circularImageView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:fontFamily="@font/montserratmedium"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_black"
+            android:text="@string/update_avatar"
+            android:textSize="@dimen/_16sdp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="0.5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:background="@color/splash_bg"
+        android:backgroundTint="@color/gray" />
+
+    <LinearLayout
+        android:id="@+id/optionFemaleAvtar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/femaleAvtar"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_orange"
+            android:scaleType="centerCrop"
+            android:src="@drawable/female_chef_avtar"
+            app:shapeAppearance="@style/circularImageView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:fontFamily="@font/montserratmedium"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_black"
+            android:text="@string/update_avatar"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="0.5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:background="@color/splash_bg"
+        android:backgroundTint="@color/gray" />
+
+    <LinearLayout
+        android:id="@+id/optionGallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/camera"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_orange"
+            android:scaleType="center"
+            android:src="@drawable/ic_gallery"
+            app:shapeAppearance="@style/circularImageView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:fontFamily="@font/montserratmedium"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_black"
+            android:text="@string/upload_profile_pic"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
+
+
+</LinearLayout>

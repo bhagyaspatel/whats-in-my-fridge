@@ -11,21 +11,26 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.lifecycleScope
+import com.bhagyapatel.project.Activities.uuid
 import com.bhagyapatel.project.Animations.MorphButton
 import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.R
+import com.bhagyapatel.project.Utils.Constants
 import com.bhagyapatel.project.Utils.getColorX
-import com.bhagyapatel.project.databinding.FragmentNewRecipeBinding
 import com.bhagyapatel.project.databinding.FragmentRandomSingleDishBinding
 import com.bumptech.glide.Glide
-import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.delay
 
-class RandomSingleDishFragment : Fragment() {
+class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelcted {
 
     private val TAG = "random_single_dish"
 
     private lateinit var binding : FragmentRandomSingleDishBinding
+
+    override fun sendInput(option: String) {
+        Log.d(TAG, "sendInput: ${option}")
+        saveCollection(option)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,10 +70,25 @@ class RandomSingleDishFragment : Fragment() {
                     iconDrawable.setTint(getColorX(R.color.app_light_orange))
                     setUIState(MorphButton.UIState.Loading)
                     delay(1500)
-                    setUIState(MorphButton.UIState.Button)
+                    showCollectionOptionDialog()
+//                    setUIState(MorphButton.UIState.Button)
                 }
+
             }
         }
+    }
+
+    private fun showCollectionOptionDialog() {
+        val dialogFragment = ChangeAvtarDialogFragment()
+        dialogFragment.setTargetFragment(this, 1)
+        dialogFragment.show(this.requireFragmentManager(), "saveCollection dialog")
+    }
+
+    private fun saveCollection(option: String) {
+        val map = HashMap<String, String>()
+        map.put("uuid", uuid!!)
+        map.put("collectionName", option)
+        //TODO : Call API to SAVE COLLECTION
     }
 
     private fun setView(dish: Recipe) {
@@ -98,6 +118,5 @@ class RandomSingleDishFragment : Fragment() {
             binding.ingredientLL.addView(textView)
         }
         binding.instructionTV.setText(HtmlCompat.fromHtml(dish.instructions,0))
-
     }
 }

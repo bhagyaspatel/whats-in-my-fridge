@@ -1,62 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.FridgeItemsFragment"
     android:orientation="vertical"
-    android:background="@color/white"
-    android:gravity="center_vertical"
-    android:padding="@dimen/_6sdp">
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fridge_bg"
+        android:alpha="0.7"/>
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_150sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp">
-
     </com.google.android.material.chip.ChipGroup>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etItem"
-            android:layout_width="0dp"
-            android:backgroundTint="@color/text_black"
-            android:layout_weight="1"
-            android:textColor="@color/text_black"
-            android:textColorHint="@color/text_black"
-            android:layout_height="wrap_content"
-            android:textStyle="normal"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Enter Ingredient.."/>
-
-        <ImageButton
-            android:id="@+id/addBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_send"
-            android:layout_gravity="end"/>
-    </LinearLayout>
-
     <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup"
         android:id="@+id/exploreDishBtn"
+        android:layout_below="@id/chipGroup"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Explore dish!"
+        android:layout_gravity="center"
+        android:text="@string/explore_dish"
         android:textAllCaps="false"
         android:padding="@dimen/_4sdp"
         android:textSize="@dimen/_14sdp"
         android:elevation="@dimen/_20sdp"
         android:background="@drawable/button_dark"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_120sdp"
         android:layout_marginBottom="@dimen/_10sdp">
     </androidx.appcompat.widget.AppCompatButton>
 
+    <LinearLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_6sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:layout_below="@id/exploreDishBtn">
 
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_gravity="bottom"
+            android:id="@+id/etItem"
+            android:layout_width="0dp"
+            android:backgroundTint="@color/black"
+            android:layout_weight="1"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/text_black"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/enter_ingredient"/>
+
+        <ImageButton
+            android:id="@+id/addBtn"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_send"
+            android:background="@color/app_orange"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

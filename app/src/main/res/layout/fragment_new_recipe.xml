@@ -78,6 +78,31 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_100sdp"/>
 
+            <TextView
+                android:id="@+id/noRecipeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_black"
+                android:text="@string/no_saved_recipes_added"
+                android:textSize="@dimen/_20sdp"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_15sdp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/exploreDishBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/explore_dish"
+                android:textAllCaps="false"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_14sdp"
+                android:elevation="@dimen/_20sdp"
+                android:background="@drawable/button_dark"
+                android:layout_marginTop="@dimen/_20sdp">
+            </androidx.appcompat.widget.AppCompatButton>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/randomRecipeRV"
                 android:layout_width="match_parent"
