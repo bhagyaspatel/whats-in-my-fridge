@@ -19,15 +19,13 @@ interface NodeInterface {
                                 @Body map : HashMap<String, String>) : Response<ResponseData>
 
     @POST("/collectionRecipe")
-    suspend fun addToCollectionRecipe(@Query("id") id : String,
-                                      @Body map : HashMap<String, String>) : Response<ResponseData>
+    suspend fun addToCollectionRecipe(@Body map : HashMap<String, String>) : Response<ResponseData>
 
-    @GET("/get/saveRecipe")
+    @POST("/get/saveRecipe")
     suspend fun getAllSavedRecipes (@Body map : HashMap<String, String>) : Response<List<SavedRecipeData>>
 
     @POST("/get/collectionRecipe")
-    suspend fun getCollectionRecipe(@Query("collectionName") collectionName : String,
-                           @Body map : HashMap<String, String>) : Response<ResponseCollectionRecipeData>
+    suspend fun getCollectionRecipe(@Body map : HashMap<String, String>) : Response<ResponseCollectionRecipeData>
 
     @POST("/get/userDetail")
     suspend fun getUserDetail (@Body  map : HashMap<String, String>) : Response<ResponseUserDetailData>

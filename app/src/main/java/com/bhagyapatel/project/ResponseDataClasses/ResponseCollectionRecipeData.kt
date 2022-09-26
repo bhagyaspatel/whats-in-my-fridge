@@ -5,5 +5,5 @@ import com.bhagyapatel.project.DataClasses.CollectionRecipeData
 data class ResponseCollectionRecipeData(
     val success: Boolean,
     val message: String,
-    val collectionRecipeData: CollectionRecipeData
+    val collectionRecipeData: List<CollectionRecipeData>
 )

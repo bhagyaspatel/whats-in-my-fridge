@@ -78,10 +78,10 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
         }
     }
 
-    suspend fun collectionRecipe (id : String, map : HashMap<String, String>){
-        Log.d("auth_repo", "authRepository saveRecipe called")
+    suspend fun collectionRecipe (map : HashMap<String, String>){
+        Log.d("auth_repo", "authRepository add to collection recipe called")
 
-        val response = nodeInterface.addToCollectionRecipe(id, map)
+        val response = nodeInterface.addToCollectionRecipe(map)
 
         if (response.body() != null){
             Log.d("auth_repo", "collectionRecipe: request : ${map}")
@@ -119,10 +119,10 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
         }
     }
 
-    suspend fun getCollectionRecipe(collectionName : String, map : HashMap<String, String>){
+    suspend fun getCollectionRecipe(map : HashMap<String, String>){
         Log.d("auth_repo", "authRepository get collection recipe called")
 
-        val response = nodeInterface.getCollectionRecipe(collectionName, map)
+        val response = nodeInterface.getCollectionRecipe(map)
         if (response.body() != null){
             Log.d("auth_repo", "getUser: request : ${map}")
             Log.d("auth_repo", "getUser: response : ${response.body()}")

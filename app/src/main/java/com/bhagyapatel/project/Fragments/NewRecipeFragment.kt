@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bhagyapatel.project.Activities.uuid
 import com.bhagyapatel.project.Adapters.RandomRecipeAdapter
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
+import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.Interface.RandomRecipeInterface
 import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
+import com.bhagyapatel.project.Interface.RetrofitHelpers.RandomRetrofitHelper
 import com.bhagyapatel.project.Interface.RetrofitHelpers.RetrofitHelper
 import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
 import com.bhagyapatel.project.MVVM.Repository.RandomRecipeRepository
@@ -36,7 +38,7 @@ class NewRecipeFragment : Fragment() {
 
     private lateinit var nodeViewModal: NodeViewModal
 
-    private lateinit var data : String
+    private lateinit var collection : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,12 +51,14 @@ class NewRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        data = NewRecipeFragmentArgs.fromBundle(requireArguments()).data
+        collection = NewRecipeFragmentArgs.fromBundle(requireArguments()).collection
 
-        if (data == RANDOM){
+        if (collection == RANDOM){
+            Log.d(TAG, "onViewCreated: random recipes has to be fetched")
             fetchRandomDishesh(view)
         }else{
-            fetchCollectionRecipes(view, data)
+            Log.d(TAG, "onViewCreated: specific recipe collection ${collection}")
+            fetchCollectionRecipes(view, collection)
         }
 
         val tf : Typeface = resources.getFont(R.font.dancingscript)
@@ -71,24 +75,32 @@ class NewRecipeFragment : Fragment() {
 
         val map = HashMap<String, String>()
         map.put("uuid", uuid!!)
-        nodeViewModal.getCollectionRecipe(collectionName, map)
+        map.put("collectionName", collectionName)
+        nodeViewModal.getCollectionRecipe(map)
 
         nodeViewModal.responseGetCollectionRecipe().observe(viewLifecycleOwner){
             if (it != null){
                 binding.progressBar.visibility = View.GONE
                 binding.randomRecipeRV.visibility = View.VISIBLE
-
-                if (it.collectionRecipeData.recipeList == null){
+                
+                if (it.collectionRecipeData.size == 0){
                     setNoRecipeView(view)
                 }
                 else {
-                    adapter = RandomRecipeAdapter(requireContext(), it.collectionRecipeData.recipeList){ recipe ->
+                    val list = ArrayList<Recipe>()
+                    it.collectionRecipeData.forEach{ that ->
+                        list.add(that.recipeList[0])
+                    }
+                    adapter = RandomRecipeAdapter(requireContext(), list){ recipe ->
                         val sendData = NewRecipeFragmentDirections.actionNewRecipeFragmentToRandomSingleDishFragment(recipe)
                         Navigation.findNavController(view).navigate(sendData)
                     }
+                    binding.randomRecipeRV.adapter = adapter
+                    binding.randomRecipeRV.layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
                 }
             }else{
                 Log.d(TAG, "response of get collection recipes are null")
+                binding.noRecipeText.visibility = View.VISIBLE
             }
         }
     }
@@ -106,7 +118,7 @@ class NewRecipeFragment : Fragment() {
     }
 
     private fun fetchRandomDishesh(view: View) {
-        val randomRecipe = RetrofitHelper.getInstance().create(RandomRecipeInterface::class.java)
+        val randomRecipe = RandomRetrofitHelper.getInstance().create(RandomRecipeInterface::class.java)
         val repository = RandomRecipeRepository(randomRecipe)
         viewModal = ViewModelProvider(this, RandomRecipeViewModalFactory(repository))
             .get(RandomRecipeViewModal::class.java)

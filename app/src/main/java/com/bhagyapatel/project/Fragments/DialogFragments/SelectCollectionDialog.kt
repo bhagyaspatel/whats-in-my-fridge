@@ -1,15 +1,12 @@
-package com.bhagyapatel.project.Fragments
+package com.bhagyapatel.project.Fragments.DialogFragments
 
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bhagyapatel.project.R
 import com.bhagyapatel.project.Utils.Constants
-import com.bhagyapatel.project.databinding.FragmentChangeAvtarDialogBinding
 import com.bhagyapatel.project.databinding.FragmentSelectCollectionDialogBinding
 import java.lang.ClassCastException
 

@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 class RandomRecipeAdapter (val context : Context, val list : List<Recipe>, val listener : (Recipe) -> Unit)
     : RecyclerView.Adapter<RandomRecipeAdapter.ViewHolder>() {
 
-    val TAG = "Random_recipe_adapter"
+    val TAG = "random_recipe_adapter"
 
     inner class ViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
         val dishImg = itemView.findViewById<ImageView>(R.id.randomDishPic)

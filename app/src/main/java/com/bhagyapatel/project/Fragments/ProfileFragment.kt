@@ -21,6 +21,7 @@ import com.bhagyapatel.project.Activities.uuid
 import com.bhagyapatel.project.Adapters.RandomRecipeAdapter
 import com.bhagyapatel.project.Animations.MorphButton
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
+import com.bhagyapatel.project.Fragments.DialogFragments.ChangeAvtarDialogFragment
 import com.bhagyapatel.project.Interface.RandomRecipeInterface
 import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
 import com.bhagyapatel.project.Interface.RetrofitHelpers.RetrofitHelper
@@ -31,11 +32,13 @@ import com.bhagyapatel.project.MVVM.ViewModal.RandomRecipeViewModal
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.RandomRecipeViewModalFactory
 import com.bhagyapatel.project.R
+import com.bhagyapatel.project.Utils.Constants.DESSERT_COLLECTION
 import com.bhagyapatel.project.Utils.Constants.FASTFOOD_COLLECTION
 import com.bhagyapatel.project.Utils.Constants.FEMALE_AVTAR
 import com.bhagyapatel.project.Utils.Constants.MALE_AVTAR
 import com.bhagyapatel.project.Utils.Constants.NONVEG_COLLECTION
 import com.bhagyapatel.project.Utils.Constants.PICK_IMAGE_CODE
+import com.bhagyapatel.project.Utils.Constants.VEG_COLLECTION
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentProfileBinding
 import kotlinx.coroutines.delay
@@ -135,11 +138,11 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
 
         binding.circularImageDessert.setOnClickListener{
             Log.d(TAG, "onViewCreated: dessert clicked")
-//            showCollection(view, DESSERT_COLLECTION)
+            showCollection(view, DESSERT_COLLECTION)
         }
         binding.circularImageVegetarian.setOnClickListener{
             Log.d(TAG, "onViewCreated: veg clicked")
-//            showCollection(view, VEG_COLLECTION)
+            showCollection(view, VEG_COLLECTION)
         }
         binding.circularImageNonVeg.setOnClickListener{
             Log.d(TAG, "onViewCreated: nonveg clicked")
@@ -180,7 +183,7 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
     }
 
     private fun showCollection(view: View, collectionType: String) {
-        val sendData = ProfileFragmentDirections.actionProfileFragment2ToNewRecipeFragment(collectionType)
+        val sendData = ProfileFragmentDirections.actionProfileFragment3ToNewRecipeFragment2(collectionType)
         Navigation.findNavController(view).navigate(sendData)
     }
 

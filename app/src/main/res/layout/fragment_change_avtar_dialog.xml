@@ -7,7 +7,7 @@
     android:background="@color/grey_bg"
     android:orientation="vertical"
     android:padding="@dimen/_20sdp"
-    tools:context=".Fragments.ChangeAvtarDialogFragment">
+    tools:context=".Fragments.DialogFragments.ChangeAvtarDialogFragment">
 
 
     <LinearLayout

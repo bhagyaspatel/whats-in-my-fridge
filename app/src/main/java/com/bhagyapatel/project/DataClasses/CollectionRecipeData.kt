@@ -1,8 +1,7 @@
 package com.bhagyapatel.project.DataClasses
 
-import com.bhagyapatel.project.DataClasses.Recipe
-
 data class CollectionRecipeData(
+    val user : String,
     val collectionName: String,
-    val recipeList: List<Recipe>? = null
+    val recipeList: ArrayList<Recipe>
 )

@@ -35,7 +35,7 @@
             android:id="@+id/action_newRecipeFragment_to_randomSingleDishFragment"
             app:destination="@id/randomSingleDishFragment" />
         <argument
-            android:name="data"
+            android:name="collection"
             app:argType="string" />
     </fragment>
     <fragment
@@ -64,14 +64,5 @@
         <argument
             android:name="dish"
             app:argType="com.bhagyapatel.project.DataClasses.Recipe" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment2"
-        android:name="com.bhagyapatel.project.Fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment2_to_newRecipeFragment"
-            app:destination="@id/newRecipeFragment" />
     </fragment>
 </navigation>

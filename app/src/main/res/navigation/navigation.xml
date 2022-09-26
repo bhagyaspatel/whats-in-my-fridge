@@ -6,13 +6,8 @@
     app:startDestination="@id/graphHoldingFragment">
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.bhagyapatel.project.Fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
         android:id="@+id/graphHoldingFragment"
-        android:name="com.bhagyapatel.project.Fragments.GraphHoldingFragment"
+        android:name="com.bhagyapatel.project.Fragments.GraphHolders.HomeGraphHoldingFragment"
         android:label="fragment_graph_holding"
         tools:layout="@layout/fragment_graph_holding" />
     <fragment
@@ -20,4 +15,9 @@
         android:name="com.bhagyapatel.project.Fragments.SavedRecipeFragment"
         android:label="fragment_saved_recipe"
         tools:layout="@layout/fragment_saved_recipe" />
+    <fragment
+        android:id="@+id/profileGraphHoldingFragment2"
+        android:name="com.bhagyapatel.project.Fragments.GraphHolders.ProfileGraphHoldingFragment"
+        android:label="fragment_profile_graph_holding"
+        tools:layout="@layout/fragment_profile_graph_holding" />
 </navigation>

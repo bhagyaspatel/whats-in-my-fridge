@@ -51,13 +51,4 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(sendData)
         }
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        Log.d(TAG, "replaceFragment: home fragment to fridge item addition")
-//        val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
-//        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-////        fragmentTransaction.remove(HomeFragment())
-//        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-//        fragmentTransaction.commit()
-//    }
 }

@@ -19,79 +19,79 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 //    }
 
     fun signup(map : HashMap<String,String>) {
-        Log.d("Single_Dish_frag", "viewmodal signup called")
+        Log.d("node_VM", "viewmodal signup called")
         viewModelScope.launch(Dispatchers.IO){
             nodeRepository.signup(map)
         }
     }
     fun responseSignup() : LiveData<ResponseData>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseSignup
     }
 
     fun updateUserDetail (map : HashMap<String, String>){
-        Log.d("Single_Dish_frag", "viewmodal update user called")
+        Log.d("node_VM", "viewmodal update user called")
         viewModelScope.launch (Dispatchers.IO){
             nodeRepository.updateUserDetails(map)
         }
     }
     fun responseUpdateUser() : LiveData<ResponseData>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseUpdateUser
     }
 
     fun saveRecipe(id : String, map : HashMap<String,String>){
-        Log.d("Single_Dish_frag", "viewmodal saveRecipe called")
+        Log.d("node_VM", "viewmodal saveRecipe called")
         viewModelScope.launch(Dispatchers.IO){
             nodeRepository.saveRecipe(id, map)
         }
     }
     fun responseSaveRecipe() : LiveData<ResponseData>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseSaveRecipe
     }
 
-    fun collectionRecipe(id : String, map : HashMap<String,String>){
-        Log.d("Single_Dish_frag", "viewmodal collection called")
+    fun collectionRecipe(map : HashMap<String,String>){
+        Log.d("node_VM", "viewmodal collection called")
         viewModelScope.launch(Dispatchers.IO){
-            nodeRepository.saveRecipe(id, map)
+            nodeRepository.collectionRecipe(map)
         }
     }
     fun responseCollectionRecipe() : LiveData<ResponseData>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseCollectionRecipe
     }
 
     fun getSavedRecipe(map : HashMap<String,String>){
-        Log.d("Single_Dish_frag", "viewmodal get all saved called")
+        Log.d("node_VM", "viewmodal get all saved called")
         viewModelScope.launch(Dispatchers.IO){
             nodeRepository.getAllSavedRecipe(map)
         }
     }
     fun responseGetSave() : LiveData<List<SavedRecipeData>>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseGetSave
     }
 
     fun getUserDetail(map : HashMap<String,String>){
-        Log.d("view modal", "viewmodal get user detail called")
+        Log.d("node_VM", "viewmodal get user detail called")
         viewModelScope.launch(Dispatchers.IO){
             nodeRepository.getUserDetail(map)
         }
     }
     fun responseUserDetail() : LiveData<ResponseUserDetailData>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseGetUserDetail
     }
 
-    fun getCollectionRecipe(collectionName : String, map : HashMap<String,String>){
-        Log.d("view modal", "viewmodal get collection recipe called")
+    fun getCollectionRecipe(map : HashMap<String,String>){
+        Log.d("node_VM", "viewmodal get collection recipe called")
         viewModelScope.launch(Dispatchers.IO){
-            nodeRepository.getCollectionRecipe(collectionName, map)
+            nodeRepository.getCollectionRecipe(map)
         }
     }
     fun responseGetCollectionRecipe() : LiveData<ResponseCollectionRecipeData>{
-        Log.d("view modal", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseGetCollectionRecipe
     }
 

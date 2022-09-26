@@ -1,4 +1,4 @@
-package com.bhagyapatel.project.Fragments
+package com.bhagyapatel.project.Fragments.GraphHolders
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bhagyapatel.project.R
 
-class GraphHoldingFragment : Fragment() {
+class HomeGraphHoldingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

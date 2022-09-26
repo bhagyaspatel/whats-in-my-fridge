@@ -1,7 +1,7 @@
 package com.bhagyapatel.project.Utils
 
 object Constants {
-    const val BASE_URL = "https://api.spoonacular.com/"
+    const val BASE_URL = "http://api.spoonacular.com/"
     const val APIKEY = "a752b5a278e6484dad9f3d7eff1656ef"
     const val MALE_AVTAR = "male"
     const val FEMALE_AVTAR = "female"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_profile"
+    app:startDestination="@id/profileFragment3">
+
+    <fragment
+        android:id="@+id/profileFragment3"
+        android:name="com.bhagyapatel.project.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment3_to_newRecipeFragment2"
+            app:destination="@id/newRecipeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/newRecipeFragment2"
+        android:name="com.bhagyapatel.project.Fragments.NewRecipeFragment"
+        android:label="fragment_new_recipe"
+        tools:layout="@layout/fragment_new_recipe" >
+        <argument
+            android:name="collection"
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -8,14 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bhagyapatel.project.Activities.uuid
 import com.bhagyapatel.project.Animations.MorphButton
+import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
 import com.bhagyapatel.project.DataClasses.Recipe
+import com.bhagyapatel.project.Fragments.DialogFragments.SelectCollectionDialog
+import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
+import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
+import com.bhagyapatel.project.MVVM.ViewModal.NodeViewModals.NodeViewModal
+import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
 import com.bhagyapatel.project.R
-import com.bhagyapatel.project.Utils.Constants
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentRandomSingleDishBinding
 import com.bumptech.glide.Glide
@@ -26,6 +33,8 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
     private val TAG = "random_single_dish"
 
     private lateinit var binding : FragmentRandomSingleDishBinding
+    private lateinit var dish : Recipe
+    private lateinit var nodeViewModal: NodeViewModal
 
     override fun sendInput(option: String) {
         Log.d(TAG, "sendInput: ${option}")
@@ -43,7 +52,7 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dish = RandomSingleDishFragmentArgs.fromBundle(requireArguments()).dish
+        dish = RandomSingleDishFragmentArgs.fromBundle(requireArguments()).dish
         Log.d(TAG, "onCreate single dish frag ${dish}")
 
 //        var isShow = true
@@ -79,16 +88,42 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
     }
 
     private fun showCollectionOptionDialog() {
-        val dialogFragment = ChangeAvtarDialogFragment()
+        val dialogFragment = SelectCollectionDialog()
         dialogFragment.setTargetFragment(this, 1)
         dialogFragment.show(this.requireFragmentManager(), "saveCollection dialog")
     }
 
     private fun saveCollection(option: String) {
+        val nodeInterface = NodeRetrofitHelper.getInstance().create(NodeInterface::class.java)
+        val reopsitory = NodeRepository(nodeInterface)
+        nodeViewModal = ViewModelProvider(this, NodeViewModalFactory(reopsitory))
+            .get(NodeViewModal::class.java)
+
         val map = HashMap<String, String>()
         map.put("uuid", uuid!!)
+        map.put("recipeId", dish.id.toString())
         map.put("collectionName", option)
-        //TODO : Call API to SAVE COLLECTION
+        map.put("aggregateLikes", dish.aggregateLikes.toString())
+        map.put("imageUrl", dish.image)
+        map.put("instructions", dish.instructions)
+        map.put("summary", dish.summary)
+        map.put("title", dish.title)
+        map.put("readyInMinutes", dish.readyInMinutes.toString())
+        map.put("servings", dish.servings.toString())
+        map.put("extendedIngredients", dish.extendedIngredients.toString())
+        map.put("vegan", dish.vegan.toString())
+        map.put("vegetarian", dish.vegetarian.toString())
+
+        nodeViewModal.collectionRecipe(map)
+
+        nodeViewModal.responseCollectionRecipe().observe(viewLifecycleOwner){
+            Log.d(TAG, "saveCollection: ${it}")
+            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+            if (it.success == true){
+                binding.morphSaveButton.setUIState(MorphButton.UIState.Button)
+            }
+        }
     }
 
     private fun setView(dish: Recipe) {
