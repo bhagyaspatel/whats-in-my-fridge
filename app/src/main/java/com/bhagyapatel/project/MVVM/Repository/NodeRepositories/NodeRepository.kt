@@ -4,9 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
+import com.bhagyapatel.project.DataClasses.Recipe
+import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseData
-import com.bhagyapatel.project.ResponseDataClasses.SavedRecipeData
+import com.bhagyapatel.project.ResponseDataClasses.ResponseSavedRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseUserDetailData
 
 class NodeRepository (private val nodeInterface: NodeInterface) {
@@ -14,7 +17,7 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
     private val responseUpdateUser = MutableLiveData<ResponseData>()
     private val responseSaveRecipe = MutableLiveData<ResponseData>()
     private val responseCollectionRecipe = MutableLiveData<ResponseData>()
-    private val responseGetSaved = MutableLiveData<List<SavedRecipeData>>()
+    private val responseGetSaved = MutableLiveData<ResponseSavedRecipeData>()
 
     private val responseGetUserDetail = MutableLiveData<ResponseUserDetailData>()
     private val responseGetCollectionRecipe = MutableLiveData<ResponseCollectionRecipeData>()
@@ -31,7 +34,7 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
     val _responseCollectionRecipe : LiveData<ResponseData>
     get() = responseCollectionRecipe
 
-    val _responseGetSave : LiveData<List<SavedRecipeData>>
+    val _responseGetSave : LiveData<ResponseSavedRecipeData>
     get() = responseGetSaved
 
     val _responseGetUserDetail : LiveData<ResponseUserDetailData>
@@ -64,10 +67,10 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
         }
     }
 
-    suspend fun saveRecipe (id : String, map : HashMap<String, String>){
+    suspend fun saveRecipe (map : HashMap<String, RequestSaveRecipe>){
         Log.d("auth_repo", "authRepository saveRecipe called")
 
-        val response = nodeInterface.addToSaveRecipe(id, map)
+        val response = nodeInterface.addToSaveRecipe(map)
 
         if (response.body() != null){
             Log.d("auth_repo", "saveRecipe: request : ${map}")
@@ -78,7 +81,7 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
         }
     }
 
-    suspend fun collectionRecipe (map : HashMap<String, String>){
+    suspend fun collectionRecipe (map : HashMap<String, RequestCollectionRecipe>){
         Log.d("auth_repo", "authRepository add to collection recipe called")
 
         val response = nodeInterface.addToCollectionRecipe(map)

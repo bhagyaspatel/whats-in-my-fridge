@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.bhagyapatel.project.DataClasses.ListSelectedDish
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.databinding.FragmentFridgeItemsBinding
 import com.google.android.material.chip.Chip
@@ -54,7 +55,8 @@ class FridgeItemsFragment : Fragment() {
                 val ingredient = chip.text.toString()
                 myList.add(ingredient)
             }
-            val sendData = FridgeItemsFragmentDirections.actionFridgeItemsFragment2ToRecipeFragment2()
+            val FRIDGEITEM = ListSelectedDish(null)
+            val sendData = FridgeItemsFragmentDirections.actionFridgeItemsFragment2ToRecipeFragment2(FRIDGEITEM)
             Navigation.findNavController(view).navigate(sendData)
         }
     }
@@ -80,13 +82,4 @@ class FridgeItemsFragment : Fragment() {
             }
         }
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        Log.d(TAG, "replaceFragment: fridge fragment to recipe dish")
-//        val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
-//        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-//        fragmentTransaction.commit()
-//    }
-
 }

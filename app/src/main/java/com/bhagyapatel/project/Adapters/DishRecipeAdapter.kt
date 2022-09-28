@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 
 class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val listener : (SelectedDish) -> Unit) : RecyclerView.Adapter<DishRecipeAdapter.viewHolder>() {
 
-    val TAG = "Dish_adapter"
+    val TAG = "dish_adapter"
 
     inner class viewHolder (itemView : View): RecyclerView.ViewHolder(itemView) {
         val dishPic = itemView.findViewById<ImageView>(R.id.dishPic)
@@ -32,18 +32,28 @@ class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val
 
                 Log.d(TAG, "missed and used counts: ${item.missedIngredientCount} ${item.usedIngredientCount}")
 
-                for (i in 0 until item.missedIngredientCount){
-                    list.add(item.missedIngredients[i].original)
-                    Log.d(TAG, "missed " + item.missedIngredients[i].original)
+                if (item.missedIngredientCount != null){
+                    for (i in 0 until item.missedIngredientCount){
+                        list.add(item.missedIngredients!![i].original)
+                        Log.d(TAG, "missed " + item.missedIngredients[i].original)
+                    }
+                    for (i in 0 until item.usedIngredientCount!!){
+                        list.add(item.usedIngredients!![i].original)
+                        Log.d(TAG, "used " + item.usedIngredients[i].original)
+                    }
+                    val selectedDish = SelectedDish(item.id,item.title, item.image, list)
+                    Log.d(TAG, "list of ingredients : ${list} ")
+                    listener.invoke(selectedDish)
+                }else{
+                    Log.d(TAG, "items.usedIngredients: ${item.usedIngredients} ")
+                    item.usedIngredients!!.forEach {
+                        Log.d(TAG, "inside for each: ${it} ")
+                        list.add(it.original)
+                    }
+                    Log.d(TAG, "list of string is : ${list} ")
+                    val selectedDish = SelectedDish(item.id,item.title, item.image, list)
+                    listener.invoke(selectedDish)
                 }
-                for (i in 0 until item.usedIngredientCount){
-                    list.add(item.usedIngredients[i].original)
-                    Log.d(TAG, "used " + item.usedIngredients[i].original)
-                }
-
-                val selectedDish = SelectedDish(item.id,item.title, item.image, list)
-                Log.d(TAG, "list of ingredients : ${list} ")
-                listener.invoke(selectedDish)
             }
         }
     }

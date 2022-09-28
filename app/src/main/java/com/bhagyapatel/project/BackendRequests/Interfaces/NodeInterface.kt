@@ -1,8 +1,11 @@
 package com.bhagyapatel.project.BackendRequests.Interfaces
 
+import com.bhagyapatel.project.DataClasses.Recipe
+import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseData
-import com.bhagyapatel.project.ResponseDataClasses.SavedRecipeData
+import com.bhagyapatel.project.ResponseDataClasses.ResponseSavedRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseUserDetailData
 import retrofit2.Response
 import retrofit2.http.*
@@ -15,14 +18,13 @@ interface NodeInterface {
     suspend fun updateUserdetail (@Body map : HashMap<String,String>) : Response<ResponseData>
 
     @POST("/saveRecipe")
-    suspend fun addToSaveRecipe(@Query("id") id : String,
-                                @Body map : HashMap<String, String>) : Response<ResponseData>
+    suspend fun addToSaveRecipe(@Body map : HashMap<String, RequestSaveRecipe>) : Response<ResponseData>
 
     @POST("/collectionRecipe")
-    suspend fun addToCollectionRecipe(@Body map : HashMap<String, String>) : Response<ResponseData>
+    suspend fun addToCollectionRecipe(@Body map : HashMap<String, RequestCollectionRecipe>) : Response<ResponseData>
 
     @POST("/get/saveRecipe")
-    suspend fun getAllSavedRecipes (@Body map : HashMap<String, String>) : Response<List<SavedRecipeData>>
+    suspend fun getAllSavedRecipes (@Body map : HashMap<String, String>) : Response<ResponseSavedRecipeData>
 
     @POST("/get/collectionRecipe")
     suspend fun getCollectionRecipe(@Body map : HashMap<String, String>) : Response<ResponseCollectionRecipeData>

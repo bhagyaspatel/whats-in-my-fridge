@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_profileFragment3_to_newRecipeFragment2"
             app:destination="@id/newRecipeFragment2" />
+        <action
+            android:id="@+id/action_profileFragment3_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_profileFragment3_to_singleDishFragment"
+            app:destination="@id/singleDishFragment" />
     </fragment>
     <fragment
         android:id="@+id/newRecipeFragment2"
@@ -22,5 +28,38 @@
         <argument
             android:name="collection"
             app:argType="string" />
+        <action
+            android:id="@+id/action_newRecipeFragment_to_randomSingleDishFragment"
+            app:destination="@id/randomSingleDishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/randomSingleDishFragment"
+        android:name="com.bhagyapatel.project.Fragments.RandomSingleDishFragment"
+        android:label="fragment_random_single_dish"
+        tools:layout="@layout/fragment_random_single_dish" >
+        <argument
+            android:name="dish"
+            app:argType="com.bhagyapatel.project.ResponseDataClasses.ResponseRecipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleDishFragment"
+        android:name="com.bhagyapatel.project.Fragments.SingleDishFragment"
+        android:label="fragment_single_dish"
+        tools:layout="@layout/fragment_single_dish" >
+        <argument
+            android:name="dish"
+            app:argType="com.bhagyapatel.project.DataClasses.SelectedDish" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.bhagyapatel.project.Fragments.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe" >
+        <action
+            android:id="@+id/action_recipeFragment2_to_singleDishFragment"
+            app:destination="@id/singleDishFragment" />
+        <argument
+            android:name="list"
+            app:argType="com.bhagyapatel.project.DataClasses.ListSelectedDish" />
     </fragment>
 </navigation>

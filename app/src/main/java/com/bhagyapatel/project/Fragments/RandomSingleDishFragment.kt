@@ -23,6 +23,8 @@ import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
 import com.bhagyapatel.project.MVVM.ViewModal.NodeViewModals.NodeViewModal
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
 import com.bhagyapatel.project.R
+import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.ResponseDataClasses.ResponseRecipe
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentRandomSingleDishBinding
 import com.bumptech.glide.Glide
@@ -33,7 +35,7 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
     private val TAG = "random_single_dish"
 
     private lateinit var binding : FragmentRandomSingleDishBinding
-    private lateinit var dish : Recipe
+    private lateinit var dish : ResponseRecipe
     private lateinit var nodeViewModal: NodeViewModal
 
     override fun sendInput(option: String) {
@@ -55,22 +57,6 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
         dish = RandomSingleDishFragmentArgs.fromBundle(requireArguments()).dish
         Log.d(TAG, "onCreate single dish frag ${dish}")
 
-//        var isShow = true
-//        var scrollRange = -1
-//
-//        binding.appbarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
-//            if (scrollRange == -1){
-//                scrollRange = barLayout?.totalScrollRange!!
-//            }
-//            if (scrollRange + verticalOffset == 0){
-//                binding.collapsingToolbar.title = "Title Collapse"
-//                isShow = true
-//            } else if (isShow){
-//                binding.collapsingToolbar.title = " " //careful there should a space between double quote otherwise it wont work
-//                isShow = false
-//            }
-//        })
-
         setView(dish)
 
         binding.morphSaveButton.setOnClickListener {
@@ -80,7 +66,6 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
                     setUIState(MorphButton.UIState.Loading)
                     delay(1500)
                     showCollectionOptionDialog()
-//                    setUIState(MorphButton.UIState.Button)
                 }
 
             }
@@ -99,21 +84,44 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
         nodeViewModal = ViewModelProvider(this, NodeViewModalFactory(reopsitory))
             .get(NodeViewModal::class.java)
 
-        val map = HashMap<String, String>()
-        map.put("uuid", uuid!!)
-        map.put("recipeId", dish.id.toString())
-        map.put("collectionName", option)
-        map.put("aggregateLikes", dish.aggregateLikes.toString())
-        map.put("imageUrl", dish.image)
-        map.put("instructions", dish.instructions)
-        map.put("summary", dish.summary)
-        map.put("title", dish.title)
-        map.put("readyInMinutes", dish.readyInMinutes.toString())
-        map.put("servings", dish.servings.toString())
-        map.put("extendedIngredients", dish.extendedIngredients.toString())
-        map.put("vegan", dish.vegan.toString())
-        map.put("vegetarian", dish.vegetarian.toString())
+//        val map = HashMap<String, String>()
+//        map.put("uuid", uuid!!)
+//        map.put("recipeId", dish.id.toString())
+//        map.put("collectionName", option)
+//        map.put("aggregateLikes", dish.aggregateLikes.toString())
+//        map.put("imageUrl", dish.image)
+//        map.put("instructions", dish.instructions)
+//        map.put("summary", dish.summary)
+//        map.put("title", dish.title)
+//        map.put("readyInMinutes", dish.readyInMinutes.toString())
+//        map.put("servings", dish.servings.toString())
+//
+////        val list = ArrayList<String>()
+////        dish.extendedIngredients.forEach{
+////            list.add(it.original)
+////        }
+////        map.put("extendedIngredients", list.toString())
+//
+//        map.put("extendedIngredients", dish.extendedIngredients.toString()) //TODO : this is saved as array of string we want array of objects
+//        map.put("vegan", dish.vegan.toString())
+//        map.put("vegetarian", dish.vegetarian.toString())
 
+        val map = HashMap<String, RequestCollectionRecipe>()
+//        val extended = ArrayList<String>()
+//        dish.extendedIngredients.forEach {
+//            extended.add(it.original)
+//        }
+
+        Log.d(TAG, "saveCollection: extended : ${dish.extendedIngredients}")
+
+        val requestCollectionRecipe = RequestCollectionRecipe(uuid!!, dish.id, option, dish.aggregateLikes,
+            dish.image, dish.instructions, dish.summary, dish.title, dish.readyInMinutes, dish.servings,
+            dish.extendedIngredients, dish.vegan, dish.vegetarian)
+
+//        Log.d(TAG, "saveCollection: " + dish.extendedIngredients.toString())
+//        Log.d(TAG, "saveCollection: " + dish.extendedIngredients)
+
+        map.put("recipe", requestCollectionRecipe)
         nodeViewModal.collectionRecipe(map)
 
         nodeViewModal.responseCollectionRecipe().observe(viewLifecycleOwner){
@@ -126,7 +134,7 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
         }
     }
 
-    private fun setView(dish: Recipe) {
+    private fun setView(dish: ResponseRecipe) {
         if(dish.vegan)
             binding.veganLL.visibility = View.VISIBLE
         if(dish.vegetarian)
@@ -144,7 +152,7 @@ class RandomSingleDishFragment : Fragment(), SelectCollectionDialog.OnInputSelct
             val textView = TextView(requireContext())
             Log.d(TAG, "setView: ${ingredient}")
             textView.apply {
-                text = "\u2022 ${ingredient.original}"
+                text = "\u2022 ${ingredient}"
                 textSize = 18F
                 setTextColor(ContextCompat.getColor(requireContext(), R.color.text_black))
                 val typeFace : Typeface = resources.getFont(R.font.acuminregular)

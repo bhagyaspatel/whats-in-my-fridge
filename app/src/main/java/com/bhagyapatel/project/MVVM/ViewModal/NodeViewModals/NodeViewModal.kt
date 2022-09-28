@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseData
 import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
+import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
-import com.bhagyapatel.project.ResponseDataClasses.SavedRecipeData
+import com.bhagyapatel.project.ResponseDataClasses.ResponseSavedRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseUserDetailData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,10 +43,10 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
         return nodeRepository._responseUpdateUser
     }
 
-    fun saveRecipe(id : String, map : HashMap<String,String>){
+    fun saveRecipe(map : HashMap<String,RequestSaveRecipe>){
         Log.d("node_VM", "viewmodal saveRecipe called")
         viewModelScope.launch(Dispatchers.IO){
-            nodeRepository.saveRecipe(id, map)
+            nodeRepository.saveRecipe(map)
         }
     }
     fun responseSaveRecipe() : LiveData<ResponseData>{
@@ -51,7 +54,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
         return nodeRepository._responseSaveRecipe
     }
 
-    fun collectionRecipe(map : HashMap<String,String>){
+    fun collectionRecipe(map : HashMap<String, RequestCollectionRecipe>){
         Log.d("node_VM", "viewmodal collection called")
         viewModelScope.launch(Dispatchers.IO){
             nodeRepository.collectionRecipe(map)
@@ -68,7 +71,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
             nodeRepository.getAllSavedRecipe(map)
         }
     }
-    fun responseGetSave() : LiveData<List<SavedRecipeData>>{
+    fun responseGetSave() : LiveData<ResponseSavedRecipeData>{
         Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseGetSave
     }

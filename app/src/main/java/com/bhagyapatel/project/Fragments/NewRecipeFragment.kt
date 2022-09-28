@@ -25,6 +25,7 @@ import com.bhagyapatel.project.MVVM.ViewModal.RandomRecipeViewModal
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.RandomRecipeViewModalFactory
 import com.bhagyapatel.project.R
+import com.bhagyapatel.project.ResponseDataClasses.ResponseRecipe
 import com.bhagyapatel.project.Utils.Constants.RANDOM
 import com.bhagyapatel.project.databinding.FragmentNewRecipeBinding
 
@@ -82,17 +83,20 @@ class NewRecipeFragment : Fragment() {
             if (it != null){
                 binding.progressBar.visibility = View.GONE
                 binding.randomRecipeRV.visibility = View.VISIBLE
-                
+
                 if (it.collectionRecipeData.size == 0){
                     setNoRecipeView(view)
                 }
                 else {
-                    val list = ArrayList<Recipe>()
-                    it.collectionRecipeData.forEach{ that ->
-                        list.add(that.recipeList[0])
+                    val list = ArrayList<ResponseRecipe>()
+                    it.collectionRecipeData.forEach{
+                        it.recipeList.forEach{
+                            list.add(it)
+                        }
                     }
-                    adapter = RandomRecipeAdapter(requireContext(), list){ recipe ->
-                        val sendData = NewRecipeFragmentDirections.actionNewRecipeFragmentToRandomSingleDishFragment(recipe)
+
+                    adapter = RandomRecipeAdapter(requireContext(), list){
+                        val sendData = NewRecipeFragmentDirections.actionNewRecipeFragmentToRandomSingleDishFragment(it)
                         Navigation.findNavController(view).navigate(sendData)
                     }
                     binding.randomRecipeRV.adapter = adapter
@@ -127,7 +131,17 @@ class NewRecipeFragment : Fragment() {
             if (randomRecipe != null){
                 binding.progressBar.visibility = View.GONE
                 binding.randomRecipeRV.visibility = View.VISIBLE
-                adapter = RandomRecipeAdapter(requireContext(), randomRecipe.recipes){ recipe ->
+                val list = ArrayList<ResponseRecipe>()
+                randomRecipe.recipes.forEach{
+                    val extended = ArrayList<String>()
+                    it.extendedIngredients.forEach {
+                        extended.add(it.original)
+                    }
+                    val responseRecipe = ResponseRecipe(it.aggregateLikes,it.id,it.image,it.instructions,it.summary,
+                    it.title, it.vegan,it.vegetarian,it.readyInMinutes,it.servings,extended)
+                    list.add(responseRecipe)
+                }
+                adapter = RandomRecipeAdapter(requireContext(), list){ recipe ->
                     val sendData = NewRecipeFragmentDirections.actionNewRecipeFragmentToRandomSingleDishFragment(recipe)
                     Navigation.findNavController(view).navigate(sendData)
                 }

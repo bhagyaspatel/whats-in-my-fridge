@@ -43,6 +43,9 @@
         android:name="com.bhagyapatel.project.Fragments.RecipeFragment"
         android:label="fragment_recipe"
         tools:layout="@layout/fragment_recipe" >
+        <argument
+            android:name="list"
+            app:argType="com.bhagyapatel.project.DataClasses.ListSelectedDish" />
         <action
             android:id="@+id/action_recipeFragment2_to_singleDishFragment"
             app:destination="@id/singleDishFragment" />
@@ -63,6 +66,6 @@
         tools:layout="@layout/fragment_random_single_dish" >
         <argument
             android:name="dish"
-            app:argType="com.bhagyapatel.project.DataClasses.Recipe" />
+            app:argType="com.bhagyapatel.project.ResponseDataClasses.ResponseRecipe" />
     </fragment>
 </navigation>

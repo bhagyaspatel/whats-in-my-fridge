@@ -18,9 +18,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bhagyapatel.project.Activities.uuid
+import com.bhagyapatel.project.Adapters.DishRecipeAdapter
+import com.bhagyapatel.project.Adapters.ProfileSavedRecipeAdapter
 import com.bhagyapatel.project.Adapters.RandomRecipeAdapter
 import com.bhagyapatel.project.Animations.MorphButton
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
+import com.bhagyapatel.project.DataClasses.ListSelectedDish
+import com.bhagyapatel.project.DataClasses.RecipeItem
+import com.bhagyapatel.project.DataClasses.SelectedDish
 import com.bhagyapatel.project.Fragments.DialogFragments.ChangeAvtarDialogFragment
 import com.bhagyapatel.project.Interface.RandomRecipeInterface
 import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
@@ -46,11 +51,11 @@ import kotlinx.coroutines.delay
 class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
 
 
+    private lateinit var savedRecipeList: ListSelectedDish
     private val TAG = "profile_frag"
     private lateinit var binding : FragmentProfileBinding
 
-    private lateinit var adapter : RandomRecipeAdapter
-    private lateinit var viewModal : RandomRecipeViewModal
+    private lateinit var adapter : ProfileSavedRecipeAdapter
     private lateinit var nodeViewModal: NodeViewModal
 
     private var username : String? = null
@@ -92,13 +97,6 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // VIEWMODAL FOR NETWORK CALLING
-        val randomRecipe = RetrofitHelper.getInstance().create(RandomRecipeInterface::class.java)
-        val repository = RandomRecipeRepository(randomRecipe)
-        viewModal = ViewModelProvider(this, RandomRecipeViewModalFactory(repository))
-            .get(RandomRecipeViewModal::class.java)
-
-
         // NODE VIEW MODAL INSTACIATION
         val nodeInterface = NodeRetrofitHelper.getInstance().create(NodeInterface::class.java)
         val reopsitory = NodeRepository(nodeInterface)
@@ -107,22 +105,7 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
 
         fetchUserData()
 
-        viewModal.recipe.observe(viewLifecycleOwner){ randomRecipe ->
-            if (randomRecipe != null){
-                Log.d(TAG, "onViewCreated: Profile recipes not null")
-                binding.progressBar.visibility = View.GONE
-                binding.savedRecipeRV.visibility = View.VISIBLE
-                adapter = RandomRecipeAdapter(requireContext(), randomRecipe.recipes){ recipe ->
-                    val sendData = NewRecipeFragmentDirections.actionNewRecipeFragmentToRandomSingleDishFragment(recipe)
-                    Navigation.findNavController(view).navigate(sendData)
-                }
-                binding.savedRecipeRV.adapter = adapter
-                binding.savedRecipeRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            }else{
-                Log.d(TAG, "random recipes are null")
-                binding.savedRecipeRV.visibility = View.GONE
-            }
-        }
+        fetchSavedRecipes(view)
 
         binding.editBtn.setOnClickListener {
             showUsernameDialog()
@@ -134,6 +117,8 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
 
         binding.viewMoreBtn.setOnClickListener {
             binding.viewMoreBtn.setTextColor(resources.getColor(R.color.white))
+            val sendData = ProfileFragmentDirections.actionProfileFragment3ToRecipeFragment(savedRecipeList)
+            Navigation.findNavController(view).navigate(sendData)
         }
 
         binding.circularImageDessert.setOnClickListener{
@@ -182,6 +167,37 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
         }
     }
 
+    private fun fetchSavedRecipes(view : View) {
+        val map = HashMap<String, String>()
+        map.put("uuid", uuid!!)
+        nodeViewModal.getSavedRecipe(map)
+
+        nodeViewModal.responseGetSave().observe(viewLifecycleOwner){
+            Log.d(TAG, "fetchSavedRecipes: ${it}")
+            Log.d(TAG, "fetchSavedRecipes: ${it.savedRecipes}")
+
+            if (it != null){
+                Log.d(TAG, "onViewCreated: Profile recipes not null")
+                binding.progressBar.visibility = View.GONE
+                binding.savedRecipeRV.visibility = View.VISIBLE
+
+                savedRecipeList = ListSelectedDish(it.savedRecipes)
+                //TODO : we are just showing 4 items here show more on click of "view more"
+
+                adapter = ProfileSavedRecipeAdapter(requireContext(), savedRecipeList.list!!.subList(0,3)){ recipe ->
+                    val sendData = ProfileFragmentDirections.actionProfileFragment3ToSingleDishFragment(recipe)
+                    Navigation.findNavController(view).navigate(sendData)
+                    Log.d(TAG, "fetchSavedRecipes: itemview clicked from profile fragment")
+                }
+                binding.savedRecipeRV.adapter = adapter
+                binding.savedRecipeRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            }else{
+                Log.d(TAG, "random recipes are null")
+                binding.savedRecipeRV.visibility = View.GONE
+            }
+        }
+    }
+
     private fun showCollection(view: View, collectionType: String) {
         val sendData = ProfileFragmentDirections.actionProfileFragment3ToNewRecipeFragment2(collectionType)
         Navigation.findNavController(view).navigate(sendData)
@@ -200,6 +216,9 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
                 binding.profilePic.setImageDrawable(resources.getDrawable(R.drawable.female_chef_avtar))
             else if (it.imageUri != MALE_AVTAR)
                 binding.profilePic.setImageURI(Uri.parse(it.imageUri))
+        //TODO : error while having picture as profile : Permission Denial: opening provider
+        // com.android.providers.media.MediaDocumentsProvider from ProcessRecord{8c84bb0 12622:com.bhagyapatel.project/u0a519}
+        //  (pid=12622, uid=10519) requires that you obtain access using ACTION_OPEN_DOCUMENT or related APIs
         }
     }
 

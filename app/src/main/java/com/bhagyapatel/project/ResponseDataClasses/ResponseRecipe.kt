@@ -1,10 +1,10 @@
-package com.bhagyapatel.project.DataClasses
+package com.bhagyapatel.project.ResponseDataClasses
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Recipe(
+data class ResponseRecipe(
     val aggregateLikes: Int,
     val id: Int,
     val image: String,
@@ -15,5 +15,5 @@ data class Recipe(
     val vegetarian: Boolean,
     val readyInMinutes : Int,
     val servings : Int,
-    val extendedIngredients: List<ExtendedIngredient>
+    val extendedIngredients: ArrayList<String>
 ) : Parcelable

@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bhagyapatel.project.Activities.uuid
 import com.bhagyapatel.project.Animations.MorphButton
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
 import com.bhagyapatel.project.DataClasses.SelectedDish
@@ -19,6 +21,7 @@ import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
 import com.bhagyapatel.project.MVVM.ViewModal.NodeViewModals.NodeViewModal
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
 import com.bhagyapatel.project.R
+import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentSingleDishBinding
 import com.bumptech.glide.Glide
@@ -59,30 +62,37 @@ class SingleDishFragment : Fragment() {
                         iconDrawable.setTint(getColorX(R.color.app_light_orange))
                         setUIState(MorphButton.UIState.Loading)
                         delay(1500)
-                        setUIState(MorphButton.UIState.Button)
+                        saveRecipe()
                     }
                 }
-                val map = HashMap<String, String>()
-                map.put("recipeId", dish!!.recipeId.toString())
-                map.put("title", dish!!.title)
-                map.put("imageUrl", dish!!.image)
-//                map.put ("userObjectId", )
-//                map.put("uuid", "234fasf")
-//                nodeViewModal.saveRecipe(map)
-//                nodeViewModal.response.observe(viewLifecycleOwner){ response ->
-//                    Log.d(TAG, "response on save recipe: ${response}")
-//                    if (response != null){
-//                        Log.d(TAG, "response is success status and message: ${response.success}; ${response.message}")
-//                    }else{
-//                        Log.d(TAG, "response is null")
-//                    }
-//                }
             }
         }
         else{
             Log.d(TAG, "onViewCreated: selected dish from prev frag is null")
         }
 
+    }
+
+    private fun saveRecipe() {
+        val map = HashMap<String, RequestSaveRecipe>()
+        val requestSaveRecipe = RequestSaveRecipe(dish!!.recipeId.toString() ,
+            dish!!.title ,dish!!.image ,dish!!.ingredients, uuid!!)
+        map.put("saveRecipe", requestSaveRecipe)
+        nodeViewModal.saveRecipe(map)
+
+        nodeViewModal.responseSaveRecipe().observe(viewLifecycleOwner){ response ->
+            Log.d(TAG, "response on save recipe: ${response}")
+            if (response != null){
+                Log.d(TAG, "response is success status and message: ${response.success}; ${response.message}")
+                if (response.success == true){
+                    Toast.makeText(requireContext(), "Recipe saved successfully", Toast.LENGTH_SHORT).show()
+                    binding.morphSaveButton.setUIState(MorphButton.UIState.Button)
+                }
+            }else{
+                Log.d(TAG, "response is null")
+                Toast.makeText(requireContext(), "Server error ⊗", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setView() {
