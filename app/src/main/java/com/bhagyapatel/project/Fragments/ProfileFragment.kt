@@ -165,6 +165,11 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
         binding.morphUpdateProfileBtn.setOnClickListener {
             saveUserDetails()
         }
+
+        binding.createRecipeBtn.setOnClickListener {
+            val sendData = ProfileFragmentDirections.actionProfileFragment3ToCreateRecipeFragment()
+            Navigation.findNavController(view).navigate(sendData)
+        }
     }
 
     private fun fetchSavedRecipes(view : View) {

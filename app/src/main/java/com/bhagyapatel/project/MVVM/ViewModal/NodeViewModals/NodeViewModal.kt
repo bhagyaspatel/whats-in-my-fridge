@@ -8,6 +8,7 @@ import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseData
 import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
 import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseSavedRecipeData
@@ -96,6 +97,17 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
     fun responseGetCollectionRecipe() : LiveData<ResponseCollectionRecipeData>{
         Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseGetCollectionRecipe
+    }
+
+    fun createRecipe(map : HashMap<String,RequestCreateRecipe>){
+        Log.d("node_VM", "viewmodal get collection recipe called")
+        viewModelScope.launch(Dispatchers.IO){
+            nodeRepository.createRecipe(map)
+        }
+    }
+    fun responseCreateRecipe() : LiveData<ResponseData>{
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
+        return nodeRepository._responseCreateRecipe
     }
 
 }

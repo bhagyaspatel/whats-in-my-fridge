@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bhagyapatel.project.Adapters.DishRecipeAdapter
-import com.bhagyapatel.project.DataClasses.ListSelectedDish
 import com.bhagyapatel.project.DataClasses.RecipeItem
 import com.bhagyapatel.project.DataClasses.SelectedDish
 import com.bhagyapatel.project.DataClasses.UsedIngredient

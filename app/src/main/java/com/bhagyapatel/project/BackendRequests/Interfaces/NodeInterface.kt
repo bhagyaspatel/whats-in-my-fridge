@@ -2,6 +2,7 @@ package com.bhagyapatel.project.BackendRequests.Interfaces
 
 import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseData
@@ -31,4 +32,7 @@ interface NodeInterface {
 
     @POST("/get/userDetail")
     suspend fun getUserDetail (@Body  map : HashMap<String, String>) : Response<ResponseUserDetailData>
+
+    @POST("/createRecipe")
+    suspend fun addToCreatedRecipe (@Body map : HashMap<String, RequestCreateRecipe>) : Response<ResponseData>
 }

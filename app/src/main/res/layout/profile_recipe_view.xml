@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_120sdp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey_bg">
@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_16sdp"
         app:cardPreventCornerOverlap="true"
-        app:cardElevation="@dimen/_6sdp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout

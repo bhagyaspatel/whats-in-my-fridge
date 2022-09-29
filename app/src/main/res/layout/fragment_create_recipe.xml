@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.CreateRecipeFragment"
+    android:background="@color/grey_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Good Line"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/app_orange"
+            android:fontFamily="@font/dancingscript"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_margin="@dimen/_6sdp"/>
+
+        <View
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/app_orange"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:backgroundTint="@color/app_orange"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/_6sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:text="Dish title*:"/>
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:background="@null"
+                android:layout_marginStart="@dimen/_6sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:text="Type*:"
+                android:textColor="@color/text_black"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupDishType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioVeg"
+                    android:checked="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"
+                    android:text="Veg" />
+                <RadioButton
+                    android:id="@+id/radioNonveg"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"
+                    android:text="Non-Veg" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:text="isVegan ?*:"
+                android:textColor="@color/text_black"/>
+
+            <RadioGroup
+                android:id="@+id/radioIsVegan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioVegan"
+                    android:checked="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"
+                    android:text="Yes" />
+                <RadioButton
+                    android:id="@+id/radioNotVegan"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"
+                    android:text="No" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/servingTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:text="No. of Servings*:"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/serving"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:background="@null"
+                android:textColor="@color/text_black"
+                android:inputType="number"
+                android:layout_marginStart="@dimen/_6sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/preparationTimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:text="Approx Preparation time*:\n(in mins)"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/prepareTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:background="@null"
+                android:inputType="number"
+                android:textColor="@color/text_black"
+                android:layout_marginStart="@dimen/_6sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/ingredientsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:text="Ingredients*:"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:background="@null"
+                android:textColor="@color/text_black"
+                android:layout_marginStart="@dimen/_6sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/instructionTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:text="Instructions*:"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:background="@null"
+                android:layout_marginStart="@dimen/_6sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/summaryTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:text="Summary*:"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/text_black"
+                android:background="@null"
+                android:layout_marginStart="@dimen/_6sdp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/uploadImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image*"
+            android:textColor="@color/white"
+            android:elevation="@dimen/_20sdp"
+            android:padding="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:background="@drawable/button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_16sdp"/>
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/imgProgressBar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_20sdp"-->
+<!--            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/publishRecipeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publish"
+            android:textColor="@color/white"
+            android:elevation="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:background="@drawable/button_dark"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_16sdp"/>
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_profileFragment3_to_singleDishFragment"
             app:destination="@id/singleDishFragment" />
+        <action
+            android:id="@+id/action_profileFragment3_to_createRecipeFragment"
+            app:destination="@id/createRecipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/newRecipeFragment2"
@@ -62,4 +65,9 @@
             android:name="list"
             app:argType="com.bhagyapatel.project.DataClasses.ListSelectedDish" />
     </fragment>
+    <fragment
+        android:id="@+id/createRecipeFragment"
+        android:name="com.bhagyapatel.project.Fragments.CreateRecipeFragment"
+        android:label="fragment_create_recipe"
+        tools:layout="@layout/fragment_create_recipe" />
 </navigation>

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
 import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
+import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
 import com.bhagyapatel.project.ResponseDataClasses.ResponseData
@@ -18,9 +19,9 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
     private val responseSaveRecipe = MutableLiveData<ResponseData>()
     private val responseCollectionRecipe = MutableLiveData<ResponseData>()
     private val responseGetSaved = MutableLiveData<ResponseSavedRecipeData>()
-
     private val responseGetUserDetail = MutableLiveData<ResponseUserDetailData>()
     private val responseGetCollectionRecipe = MutableLiveData<ResponseCollectionRecipeData>()
+    private val responseCreateRecipe = MutableLiveData<ResponseData>()
 
     val _responseSignup : LiveData<ResponseData>
     get() = responseSignup
@@ -42,6 +43,9 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
 
     val _responseGetCollectionRecipe : LiveData<ResponseCollectionRecipeData>
     get() = responseGetCollectionRecipe
+
+    val _responseCreateRecipe : LiveData<ResponseData>
+    get() = responseCreateRecipe
 
     suspend fun signup (map : HashMap<String, String>){
         val response = nodeInterface.signup(map)
@@ -130,6 +134,19 @@ class NodeRepository (private val nodeInterface: NodeInterface) {
             Log.d("auth_repo", "getUser: request : ${map}")
             Log.d("auth_repo", "getUser: response : ${response.body()}")
             responseGetCollectionRecipe.postValue(response.body())
+        }else{
+            Log.d("auth_repo", "getUser: response body is null")
+        }
+    }
+
+    suspend fun createRecipe(map : HashMap<String, RequestCreateRecipe>){
+        Log.d("auth_repo", "authRepository get collection recipe called")
+
+        val response = nodeInterface.addToCreatedRecipe(map)
+        if (response.body() != null){
+            Log.d("auth_repo", "getUser: request : ${map}")
+            Log.d("auth_repo", "getUser: response : ${response.body()}")
+            responseCreateRecipe.postValue(response.body())
         }else{
             Log.d("auth_repo", "getUser: response body is null")
         }

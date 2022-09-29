@@ -28,13 +28,14 @@
         <entry key="app/src/main/res/layout/alertdialogue_username.xml" value="0.2857789855072464" />
         <entry key="app/src/main/res/layout/collection_item_view.xml" value="0.9498643736908401" />
         <entry key="app/src/main/res/layout/fragment_change_avtar_dialog.xml" value="0.2857789855072464" />
+        <entry key="app/src/main/res/layout/fragment_create_recipe.xml" value="0.2857789855072464" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.2857789855072464" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_fridge_items.xml" value="0.1983695652173913" />
         <entry key="app/src/main/res/layout/fragment_graph_holding.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_new_recipe.xml" value="0.19571230982019364" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_profile_graph_holding.xml" value="0.2857789855072464" />
         <entry key="app/src/main/res/layout/fragment_random_single_dish.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_recipe.xml" value="0.2821954345703124" />
