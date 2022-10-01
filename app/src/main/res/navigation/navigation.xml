@@ -11,13 +11,13 @@
         android:label="fragment_graph_holding"
         tools:layout="@layout/fragment_graph_holding" />
     <fragment
-        android:id="@+id/savedRecipeFragment"
-        android:name="com.bhagyapatel.project.Fragments.SavedRecipeFragment"
-        android:label="fragment_saved_recipe"
-        tools:layout="@layout/fragment_saved_recipe" />
-    <fragment
         android:id="@+id/profileGraphHoldingFragment2"
         android:name="com.bhagyapatel.project.Fragments.GraphHolders.ProfileGraphHoldingFragment"
         android:label="fragment_profile_graph_holding"
         tools:layout="@layout/fragment_profile_graph_holding" />
+    <fragment
+        android:id="@+id/myRecipeGraphHoldingFragment"
+        android:name="com.bhagyapatel.project.Fragments.GraphHolders.MyRecipeGraphHoldingFragment"
+        android:label="fragment_my_recipe_graph_holding"
+        tools:layout="@layout/fragment_my_recipe_graph_holding" />
 </navigation>

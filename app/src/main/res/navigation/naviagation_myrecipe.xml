@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/naviagation_myrecipe"
+    app:startDestination="@id/showCreatedRecipeFragment2">
+
+    <fragment
+        android:id="@+id/showCreatedRecipeFragment2"
+        android:name="com.bhagyapatel.project.Fragments.ShowCreatedRecipeFragment"
+        android:label="fragment_show_created_recipe"
+        tools:layout="@layout/fragment_show_created_recipe" >
+        <action
+            android:id="@+id/action_showCreatedRecipeFragment2_to_randomSingleDishFragment2"
+            app:destination="@id/randomSingleDishFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/randomSingleDishFragment2"
+        android:name="com.bhagyapatel.project.Fragments.RandomSingleDishFragment"
+        android:label="fragment_random_single_dish"
+        tools:layout="@layout/fragment_random_single_dish" >
+        <argument
+            android:name="dish"
+            app:argType="com.bhagyapatel.project.ResponseDataClasses.ResponseRecipe" />
+    </fragment>
+</navigation>

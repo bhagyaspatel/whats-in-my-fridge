@@ -5,14 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bhagyapatel.project.DataClasses.Recipe
-import com.bhagyapatel.project.ResponseDataClasses.ResponseData
 import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
 import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
-import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
-import com.bhagyapatel.project.ResponseDataClasses.ResponseSavedRecipeData
-import com.bhagyapatel.project.ResponseDataClasses.ResponseUserDetailData
+import com.bhagyapatel.project.ResponseDataClasses.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -108,6 +105,17 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
     fun responseCreateRecipe() : LiveData<ResponseData>{
         Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseGetUserDetail}")
         return nodeRepository._responseCreateRecipe
+    }
+
+    fun getCreatedRecipe(map : HashMap<String, String>){
+        Log.d("node_VM", "viewmodal get collection recipe called")
+        viewModelScope.launch(Dispatchers.IO){
+            nodeRepository.getCreatedRecipe(map)
+        }
+    }
+    fun responseGetCreateRecipe() : LiveData<ResponseCreateRecipe>{
+        Log.d("node_VM", "responseUserDetail: ${nodeRepository._responseCreateRecipe}")
+        return nodeRepository._responseGetCreateRecipe
     }
 
 }

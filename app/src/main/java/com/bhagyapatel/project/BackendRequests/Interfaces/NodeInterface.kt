@@ -4,10 +4,7 @@ import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
-import com.bhagyapatel.project.ResponseDataClasses.ResponseCollectionRecipeData
-import com.bhagyapatel.project.ResponseDataClasses.ResponseData
-import com.bhagyapatel.project.ResponseDataClasses.ResponseSavedRecipeData
-import com.bhagyapatel.project.ResponseDataClasses.ResponseUserDetailData
+import com.bhagyapatel.project.ResponseDataClasses.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -35,4 +32,7 @@ interface NodeInterface {
 
     @POST("/createRecipe")
     suspend fun addToCreatedRecipe (@Body map : HashMap<String, RequestCreateRecipe>) : Response<ResponseData>
+
+    @POST("/get/createRecipe")
+    suspend fun getCreateRecipe (@Body map : HashMap<String, String>) : Response<ResponseCreateRecipe>
 }

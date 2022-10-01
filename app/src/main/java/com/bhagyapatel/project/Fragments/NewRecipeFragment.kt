@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bhagyapatel.project.Activities.uuid
 import com.bhagyapatel.project.Adapters.RandomRecipeAdapter
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
-import com.bhagyapatel.project.DataClasses.Recipe
 import com.bhagyapatel.project.Interface.RandomRecipeInterface
 import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
 import com.bhagyapatel.project.Interface.RetrofitHelpers.RandomRetrofitHelper
-import com.bhagyapatel.project.Interface.RetrofitHelpers.RetrofitHelper
 import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
 import com.bhagyapatel.project.MVVM.Repository.RandomRecipeRepository
 import com.bhagyapatel.project.MVVM.ViewModal.NodeViewModals.NodeViewModal

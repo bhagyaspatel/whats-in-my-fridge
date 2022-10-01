@@ -27,6 +27,7 @@ import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.Utils.Constants
 import com.bhagyapatel.project.databinding.FragmentCreateRecipeBinding
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
+import java.net.URL
 
 class CreateRecipeFragment : Fragment() {
 
@@ -79,6 +80,7 @@ class CreateRecipeFragment : Fragment() {
     }
 
     private fun publishRecipe() {
+        Log.d(TAG, "publishRecipe: called")
         val nodeInterface = NodeRetrofitHelper.getInstance().create(NodeInterface::class.java)
         val reopsitory = NodeRepository(nodeInterface)
         nodeViewModal = ViewModelProvider(this, NodeViewModalFactory(reopsitory))
@@ -87,9 +89,15 @@ class CreateRecipeFragment : Fragment() {
         val isVegan = if (binding.radioVegan.isChecked) true else false
         val isVegetarian = if (binding.radioVeg.isChecked) true else false
 
-        val createdRecipe = RequestCreateRecipe(uuid!!, imageURI!!,binding.instruction.toString(),binding.summary.toString(),
-        binding.title.toString(),isVegan,isVegetarian,binding.prepareTime.toString().toInt(),
-            binding.serving.toString().toInt() ,binding.ingredients.toString())
+        Log.d(TAG, "publishRecipe: ${binding.prepareTime.text.toString().toInt()}")
+        Log.d(TAG, "publishRecipe: ${binding.serving.text.toString().toInt()}")
+
+        val createdRecipe = RequestCreateRecipe(uuid!!, imageURI.toString(), binding.instruction.text.toString(),
+            binding.summary.text.toString(), binding.title.text.toString(), isVegan, isVegetarian,
+            binding.prepareTime.text.toString().toInt(), binding.serving.text.toString().toInt(),
+            binding.ingredients.text.toString())
+
+        Log.d(TAG, "publishRecipe: $createdRecipe")
 
         val map = HashMap<String, RequestCreateRecipe>()
         map.put("createdRecipe", createdRecipe)
@@ -98,6 +106,7 @@ class CreateRecipeFragment : Fragment() {
 
         nodeViewModal.responseCreateRecipe().observe(viewLifecycleOwner){
             Log.d(TAG, "publishRecipe: ${it}")
+            Toast.makeText(requireContext(), "Recipe created successfully", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -120,6 +129,9 @@ class CreateRecipeFragment : Fragment() {
             val uri : Uri? = data!!.data
             Log.d(TAG, "onActivityResult: image uri: ${uri}")
             imageURI = uri.toString()
+            Log.d(TAG, "onActivityResult: imageUri (uri.toString) = ${imageURI}")
+//            val url = URL(imageURI)
+//            Log.d(TAG, "onActivityResult: image URL : ${url}")
         }
     }
 
