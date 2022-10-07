@@ -14,4 +14,7 @@
     <string name="update_avatar">Update Avatar</string>
     <string name="upload_profile_pic">Upload profile pic</string>
     <string name="no_saved_recipes_added">No saved recipes added !!</string>
+    <string name="permissionAllowGuidance"><![CDATA[Grant storage permissions from application setting]]></string>
+    <string name="permission_snackbar" translatable="false">Please provide the storage permission, it is required for setting profile picture</string>
+
 </resources>

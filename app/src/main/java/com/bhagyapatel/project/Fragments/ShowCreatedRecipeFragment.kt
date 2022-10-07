@@ -69,6 +69,11 @@ class ShowCreatedRecipeFragment : Fragment() {
                     }
                     else{
                         binding.createdRecipeRV.visibility = View.VISIBLE
+
+                        it.createdRecipeList.forEach {
+
+                        }
+
                         adapter = CreateRecipeAdapter(requireContext(), it.createdRecipeList){ recipe ->
                             val sendData = ShowCreatedRecipeFragmentDirections.actionShowCreatedRecipeFragment2ToRandomSingleDishFragment2(recipe)
                             Navigation.findNavController(view).navigate(sendData)

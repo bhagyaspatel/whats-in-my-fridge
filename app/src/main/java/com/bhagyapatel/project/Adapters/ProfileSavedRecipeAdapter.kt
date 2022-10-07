@@ -42,6 +42,8 @@ class ProfileSavedRecipeAdapter (val context: Context, val list : List<SelectedD
         val currentItem = list[position]
         holder.dishName.text = currentItem.title
         holder.likes.text = currentItem.likes
+        Log.d(TAG, "onBindViewHolder: like counts ${currentItem.likes}")
+
         Glide.with(context).load(currentItem.image).into(holder.dishPic)
     }
 

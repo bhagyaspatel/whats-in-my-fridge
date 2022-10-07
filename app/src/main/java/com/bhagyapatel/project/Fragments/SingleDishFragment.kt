@@ -48,6 +48,8 @@ class SingleDishFragment : Fragment() {
         dish = SingleDishFragmentArgs.fromBundle(requireArguments()).dish
         Log.d(TAG, "onCreate: ${dish}, ${binding.dishName}")
 
+        Log.d("likes_count", "in single dish likes: ${dish!!.likes}")
+
         val nodeInterface = NodeRetrofitHelper.getInstance().create(NodeInterface::class.java)
         val reopsitory = NodeRepository(nodeInterface)
         nodeViewModal = ViewModelProvider(this, NodeViewModalFactory(reopsitory))
@@ -70,14 +72,15 @@ class SingleDishFragment : Fragment() {
         else{
             Log.d(TAG, "onViewCreated: selected dish from prev frag is null")
         }
-
     }
 
     private fun saveRecipe() {
         val map = HashMap<String, RequestSaveRecipe>()
         val requestSaveRecipe = RequestSaveRecipe(dish!!.recipeId.toString() ,
-            dish!!.title ,dish!!.image ,dish!!.ingredients, uuid!!)
+            dish!!.title ,dish!!.image ,dish!!.ingredients, dish!!.likes,uuid!!)
+
         map.put("saveRecipe", requestSaveRecipe)
+
         nodeViewModal.saveRecipe(map)
 
         nodeViewModal.responseSaveRecipe().observe(viewLifecycleOwner){ response ->

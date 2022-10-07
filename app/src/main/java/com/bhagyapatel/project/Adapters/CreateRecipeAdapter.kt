@@ -1,6 +1,8 @@
 package com.bhagyapatel.project.Adapters
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,8 @@ import com.bhagyapatel.project.R
 import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.ResponseDataClasses.ResponseRecipe
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.awaitAll
+import java.io.File
 
 class CreateRecipeAdapter (val context : Context, val list : List<RequestCreateRecipe>, val listener : (ResponseRecipe) -> Unit)
     : RecyclerView.Adapter<CreateRecipeAdapter.ViewHolder>() {
@@ -21,6 +25,7 @@ class CreateRecipeAdapter (val context : Context, val list : List<RequestCreateR
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val dishImg = itemView.findViewById<ImageView>(R.id.dishPic)
         val dishName = itemView.findViewById<TextView>(R.id.dishName)
+        val dishPic = itemView.findViewById<ImageView>(R.id.dishPic)
 
         init {
             itemView.setOnClickListener {
@@ -46,11 +51,26 @@ class CreateRecipeAdapter (val context : Context, val list : List<RequestCreateR
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = list[position]
         holder.dishName.text = currentItem.title
-        Log.d(TAG, "onBindViewHolder: ${holder.dishName.text}, ${currentItem.title}")
-//        Glide.with(context).load(currentItem.imageUrl).into(holder.dishImg)
+
+
+        val bitmap : Bitmap? = getBitmapFromString(currentItem.imageUrl)
+
+        if(bitmap != null){
+            Glide.with(context).load(bitmap).into(holder.dishPic)
+        }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
+
+    private fun getBitmapFromString (fileString : String) : Bitmap? {
+        val imageFile = File(fileString)
+        Log.d(TAG, "getBitmapFromString: Image filepath :: ${imageFile.absolutePath}")
+        val bmOptions = BitmapFactory.Options()
+        var bitmap = BitmapFactory.decodeFile(imageFile.absolutePath, bmOptions)
+        Log.d(TAG, "getBitmapFromString: ${bitmap}")
+        return bitmap
+    }
+
 }

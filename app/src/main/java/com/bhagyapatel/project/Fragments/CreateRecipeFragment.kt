@@ -25,6 +25,7 @@ import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFa
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.Utils.Constants
+import com.bhagyapatel.project.Utils.FilePickUtils
 import com.bhagyapatel.project.databinding.FragmentCreateRecipeBinding
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 import java.net.URL
@@ -128,10 +129,10 @@ class CreateRecipeFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK || resultCode == Constants.PICK_IMAGE_CODE){
             val uri : Uri? = data!!.data
             Log.d(TAG, "onActivityResult: image uri: ${uri}")
-            imageURI = uri.toString()
+            val selectedImagePath = FilePickUtils.getPath(requireContext(), uri!!)
+
+            imageURI = selectedImagePath
             Log.d(TAG, "onActivityResult: imageUri (uri.toString) = ${imageURI}")
-//            val url = URL(imageURI)
-//            Log.d(TAG, "onActivityResult: image URL : ${url}")
         }
     }
 

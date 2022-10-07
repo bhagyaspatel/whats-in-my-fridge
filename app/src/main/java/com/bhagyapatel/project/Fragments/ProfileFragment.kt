@@ -1,41 +1,43 @@
 package com.bhagyapatel.project.Fragments
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bhagyapatel.project.Activities.HomeActivity
+import com.bhagyapatel.project.Activities.MainActivity
 import com.bhagyapatel.project.Activities.uuid
-import com.bhagyapatel.project.Adapters.DishRecipeAdapter
 import com.bhagyapatel.project.Adapters.ProfileSavedRecipeAdapter
-import com.bhagyapatel.project.Adapters.RandomRecipeAdapter
 import com.bhagyapatel.project.Animations.MorphButton
 import com.bhagyapatel.project.BackendRequests.Interfaces.NodeInterface
 import com.bhagyapatel.project.DataClasses.ListSelectedDish
-import com.bhagyapatel.project.DataClasses.RecipeItem
-import com.bhagyapatel.project.DataClasses.SelectedDish
 import com.bhagyapatel.project.Fragments.DialogFragments.ChangeAvtarDialogFragment
-import com.bhagyapatel.project.Interface.RandomRecipeInterface
 import com.bhagyapatel.project.Interface.RetrofitHelpers.NodeRetrofitHelper
-import com.bhagyapatel.project.Interface.RetrofitHelpers.RetrofitHelper
 import com.bhagyapatel.project.MVVM.Repository.NodeRepositories.NodeRepository
-import com.bhagyapatel.project.MVVM.Repository.RandomRecipeRepository
 import com.bhagyapatel.project.MVVM.ViewModal.NodeViewModals.NodeViewModal
-import com.bhagyapatel.project.MVVM.ViewModal.RandomRecipeViewModal
 import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.NodeViewModalFactory
-import com.bhagyapatel.project.MVVM.ViewModal.ViewModalFactories.RandomRecipeViewModalFactory
 import com.bhagyapatel.project.R
 import com.bhagyapatel.project.Utils.Constants.DESSERT_COLLECTION
 import com.bhagyapatel.project.Utils.Constants.FASTFOOD_COLLECTION
@@ -43,10 +45,14 @@ import com.bhagyapatel.project.Utils.Constants.FEMALE_AVTAR
 import com.bhagyapatel.project.Utils.Constants.MALE_AVTAR
 import com.bhagyapatel.project.Utils.Constants.NONVEG_COLLECTION
 import com.bhagyapatel.project.Utils.Constants.PICK_IMAGE_CODE
+import com.bhagyapatel.project.Utils.Constants.STORAGE_REQUESTCODE
 import com.bhagyapatel.project.Utils.Constants.VEG_COLLECTION
+import com.bhagyapatel.project.Utils.FilePickUtils
 import com.bhagyapatel.project.Utils.getColorX
 import com.bhagyapatel.project.databinding.FragmentProfileBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
+import java.io.File
 
 class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
 
@@ -112,7 +118,7 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
         }
 
         binding.profilePicBtn.setOnClickListener {
-            showProfileDialog()
+            checkPermission()
         }
 
         binding.viewMoreBtn.setOnClickListener {
@@ -172,6 +178,62 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
         }
     }
 
+    private fun checkPermission() {
+        Log.d(TAG, "checkPermission: called")
+        if(checkSelfPermission(requireContext(), android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED){
+            Log.d(TAG, "checkPermission: permission has to be asked")
+                requestPermissions(
+                    arrayOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE), STORAGE_REQUESTCODE)
+        }else{
+            Log.d(TAG, "checkPermission: permission already granted")
+            showProfileDialog()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode == STORAGE_REQUESTCODE){
+            if(grantResults.isNotEmpty()){
+                if(checkSelfPermission(requireContext(), Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED){
+                    Log.d(TAG, "onRequestPermissionsResult: checkSelfPermission granted")
+                    showProfileDialog()
+                }
+                else {
+                    if (shouldShowRequestPermissionRationale(Manifest.permission.MANAGE_EXTERNAL_STORAGE)){
+                        val snackbar = Snackbar.make(
+                            binding.container,
+                            getString(R.string.permission_snackbar),
+                            Snackbar.LENGTH_INDEFINITE
+                        )
+                        snackbar.setAction("OK") {
+                            requestPermissions(
+                                permissions,
+                                STORAGE_REQUESTCODE
+                            )
+                        }
+                        snackbar.show()
+                    }else{
+                        Toast.makeText(requireContext(), getString(R.string.permissionAllowGuidance), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else {
+                Log.d(TAG, "else part in onRqstPermsnResult with toast")
+                Toast.makeText(requireContext(), "Request to Permission was Denied", Toast.LENGTH_SHORT).show()
+            }
+        }else {
+            Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "storage permission not granted")
+        }
+    }
+
     private fun fetchSavedRecipes(view : View) {
         val map = HashMap<String, String>()
         map.put("uuid", uuid!!)
@@ -189,7 +251,7 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
                 savedRecipeList = ListSelectedDish(it.savedRecipes)
                 //TODO : we are just showing 4 items here show more on click of "view more"
 
-                adapter = ProfileSavedRecipeAdapter(requireContext(), savedRecipeList.list!!.subList(0,3)){ recipe ->
+                adapter = ProfileSavedRecipeAdapter(requireContext(), savedRecipeList.list!!.subList(0,4)){ recipe ->
                     val sendData = ProfileFragmentDirections.actionProfileFragment3ToSingleDishFragment(recipe)
                     Navigation.findNavController(view).navigate(sendData)
                     Log.d(TAG, "fetchSavedRecipes: itemview clicked from profile fragment")
@@ -219,11 +281,12 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
 
             if (it.imageUri == FEMALE_AVTAR)
                 binding.profilePic.setImageDrawable(resources.getDrawable(R.drawable.female_chef_avtar))
-            else if (it.imageUri != MALE_AVTAR)
-                binding.profilePic.setImageURI(Uri.parse(it.imageUri))
-        //TODO : error while having picture as profile : Permission Denial: opening provider
-        // com.android.providers.media.MediaDocumentsProvider from ProcessRecord{8c84bb0 12622:com.bhagyapatel.project/u0a519}
-        //  (pid=12622, uid=10519) requires that you obtain access using ACTION_OPEN_DOCUMENT or related APIs
+            else if (it.imageUri != MALE_AVTAR){
+                val bitmap : Bitmap? = getBitmapFromString(it.imageUri!!)
+                Log.d(TAG, "fetchUserData: bitmap ${bitmap}")
+                if(bitmap != null)
+                    binding.profilePic.setImageBitmap(bitmap)
+            }
         }
     }
 
@@ -291,12 +354,33 @@ class ProfileFragment : Fragment(), ChangeAvtarDialogFragment.OnInputSelcted {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK || resultCode == PICK_IMAGE_CODE){
             val uri : Uri? = data!!.data
+
+            val selectedImagePath = FilePickUtils.getPath(requireContext(), uri!!)
+
+            val bitmap = BitmapFactory.decodeFile(selectedImagePath)
+
+            Log.d(TAG, "onActivityResult: selectedImagePath ${selectedImagePath}")
+            Log.d(TAG, "onActivityResult: bitmap ${bitmap}")
             Log.d(TAG, "onActivityResult: image uri: ${uri}")
-            binding.profilePic.setImageURI(uri)
-            imageURI = uri.toString()
-            binding.morphUpdateProfileBtn.visibility = View.VISIBLE
-            //TODO : save this uri in Bacekend; also store selected avtar string
+
+            if(selectedImagePath == null){
+                Toast.makeText(requireContext(), "Please select the image from gallery", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                binding.profilePic.setImageURI(uri)
+                imageURI = selectedImagePath
+                binding.morphUpdateProfileBtn.visibility = View.VISIBLE
+            }
         }
     }
+
+    private fun getBitmapFromString(fileString : String) : Bitmap? {
+        val imageFile = File(fileString)
+        val bmOptions = BitmapFactory.Options()
+        var bitmap = BitmapFactory.decodeFile(imageFile.absolutePath, bmOptions)
+        Log.d(TAG, "getBitmapFromString: ${bitmap}")
+        return bitmap
+    }
+
 
 }

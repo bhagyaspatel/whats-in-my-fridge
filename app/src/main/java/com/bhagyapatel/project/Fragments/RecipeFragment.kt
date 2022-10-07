@@ -40,7 +40,6 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated: Recipe fragment")
 
-
         val list = RecipeFragmentArgs.fromBundle(requireArguments()).list
 
         if (list.list == null) {
@@ -48,7 +47,6 @@ class RecipeFragment : Fragment() {
         } else {
             showProfileSavedRecipes(view, list.list)
         }
-
     }
 
     private fun showProfileSavedRecipes(view: View, list : List<SelectedDish>) {

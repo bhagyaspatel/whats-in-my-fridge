@@ -14,4 +14,5 @@ object Constants {
     const val NONVEG_COLLECTION = "nonveg"
     const val FASTFOOD_COLLECTION = "fastfood"
     const val RANDOM = "random"
+    const val STORAGE_REQUESTCODE = 100
 }

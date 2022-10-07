@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object NodeRetrofitHelper {
-    private const val BASE_URL = "http://192.168.1.5:4000/"
+    private const val BASE_URL = "https://androidwhatsinmyfridge.herokuapp.com/"
 
     fun getInstance() : Retrofit {
         return Retrofit.Builder()

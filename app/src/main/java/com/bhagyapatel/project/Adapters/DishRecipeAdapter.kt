@@ -27,31 +27,24 @@ class DishRecipeAdapter (val context : Context, val list : List<RecipeItem>, val
         init{
             itemView.setOnClickListener {
                 Log.d(TAG, "ItemView Clicked ${list[adapterPosition].id}")
+
                 val item = list[adapterPosition]
                 val list : MutableList<String> = ArrayList()
-
-                Log.d(TAG, "missed and used counts: ${item.missedIngredientCount} ${item.usedIngredientCount}")
 
                 if (item.missedIngredientCount != null){
                     for (i in 0 until item.missedIngredientCount){
                         list.add(item.missedIngredients!![i].original)
-                        Log.d(TAG, "missed " + item.missedIngredients[i].original)
                     }
                     for (i in 0 until item.usedIngredientCount!!){
                         list.add(item.usedIngredients!![i].original)
-                        Log.d(TAG, "used " + item.usedIngredients[i].original)
                     }
-                    val selectedDish = SelectedDish(item.id,item.title, item.image, list)
-                    Log.d(TAG, "list of ingredients : ${list} ")
+                    val selectedDish = SelectedDish(item.id,item.title, item.image, list, item.likes.toString())
                     listener.invoke(selectedDish)
                 }else{
-                    Log.d(TAG, "items.usedIngredients: ${item.usedIngredients} ")
                     item.usedIngredients!!.forEach {
-                        Log.d(TAG, "inside for each: ${it} ")
                         list.add(it.original)
                     }
-                    Log.d(TAG, "list of string is : ${list} ")
-                    val selectedDish = SelectedDish(item.id,item.title, item.image, list)
+                    val selectedDish = SelectedDish(item.id,item.title, item.image, list, item.likes.toString())
                     listener.invoke(selectedDish)
                 }
             }

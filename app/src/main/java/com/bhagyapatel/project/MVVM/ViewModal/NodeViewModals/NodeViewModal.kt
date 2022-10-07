@@ -10,18 +10,19 @@ import com.bhagyapatel.project.RequestDataClasses.RequestCollectionRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestCreateRecipe
 import com.bhagyapatel.project.RequestDataClasses.RequestSaveRecipe
 import com.bhagyapatel.project.ResponseDataClasses.*
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
-//    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
-//        throwable.printStackTrace()
-//    }
+    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+        throwable.printStackTrace()
+    }
 
     fun signup(map : HashMap<String,String>) {
         Log.d("node_VM", "viewmodal signup called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.signup(map)
         }
     }
@@ -32,7 +33,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun updateUserDetail (map : HashMap<String, String>){
         Log.d("node_VM", "viewmodal update user called")
-        viewModelScope.launch (Dispatchers.IO){
+        viewModelScope.launch (Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.updateUserDetails(map)
         }
     }
@@ -43,7 +44,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun saveRecipe(map : HashMap<String,RequestSaveRecipe>){
         Log.d("node_VM", "viewmodal saveRecipe called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.saveRecipe(map)
         }
     }
@@ -54,7 +55,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun collectionRecipe(map : HashMap<String, RequestCollectionRecipe>){
         Log.d("node_VM", "viewmodal collection called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.collectionRecipe(map)
         }
     }
@@ -65,7 +66,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun getSavedRecipe(map : HashMap<String,String>){
         Log.d("node_VM", "viewmodal get all saved called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.getAllSavedRecipe(map)
         }
     }
@@ -76,7 +77,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun getUserDetail(map : HashMap<String,String>){
         Log.d("node_VM", "viewmodal get user detail called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.getUserDetail(map)
         }
     }
@@ -87,7 +88,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun getCollectionRecipe(map : HashMap<String,String>){
         Log.d("node_VM", "viewmodal get collection recipe called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.getCollectionRecipe(map)
         }
     }
@@ -98,7 +99,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun createRecipe(map : HashMap<String,RequestCreateRecipe>){
         Log.d("node_VM", "viewmodal get collection recipe called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.createRecipe(map)
         }
     }
@@ -109,7 +110,7 @@ class NodeViewModal(val nodeRepository: NodeRepository) : ViewModel() {
 
     fun getCreatedRecipe(map : HashMap<String, String>){
         Log.d("node_VM", "viewmodal get collection recipe called")
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler){
             nodeRepository.getCreatedRecipe(map)
         }
     }
